@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Vendor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" />
+
+<style>
+	a {
+		cursor :pointer;
+	}	
+</style>
+
+<div class="row" >
+
+	<div class=" col-lg-4">
+	<!--begin::Contacts-->
+	<div class="card card-flush" id="kt_contacts_list">
+		<!--begin::Card header-->
+		<div class="card-header pt-7" id="kt_contacts_list_header">
+
+			<a class="btn btn-primary mb-1 h-40px" asp-action="Add" >Add Vendor </a>
+
+
+			<div class="row">	<div class="d-flex align-items-center position-relative my-1">
+					<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+					<span class="svg-icon svg-icon-1 position-absolute ms-6">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+							<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+						</svg>
+					</span>
+					<!--end::Svg Icon-->
+					<input id="SearchPatientWorklist" type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Vendor">
+				</div>
+			</div>
+
+				<table class="table align-middle table-row-dashed fs-6 gy-5" id="displayReportColumns">
+					<thead>
+						<tr>
+							<td>
+
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model )
+						{
+							<tr>
+								<td>
+									<div class="d-flex flex-stack py-4">
+										<!-- Vendor details -->
+										<div class="d-flex align-items-center">
+											<div class="ms-4">
+												<a class="fs-6 fw-bold text-gray-900 text-hover-primary mb-2 vendor-name" data-vendor-id="@item.VendorId">@item.VendorName</a>
+												<div class="fw-semibold fs-7 text-muted">@item.VendorCatNavigation.CatName</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							
+						}
+					</tbody>
+					</table>
+			
+			<!--end::Form-->
+		</div>
+		<!--end::Card header-->
+		
+	</div>
+	<!--end::Contacts-->
+</div>
+<!--end::Search-->
+	<div id="vendorDetails" class="col-lg-8">
+
+<!--begin::Contacts-->
+<div class="card card-flush h-lg-100" id="kt_contacts_main">
+	<!--begin::Card header-->
+	<div class="card-header pt-7" id="kt_chat_contacts_header">
+		<!--begin::Card title-->
+		<div class="card-title">
+			<!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+			<span class="svg-icon svg-icon-1 me-2">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor"></path>
+					<path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor"></path>
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+			<h2>Vendor Details</h2>
+		</div>
+		<!--end::Card title-->
+		<!--begin::Card toolbar-->
+		<div class="card-toolbar gap-3">
+			
+
+			<!--display data here-->
+
+			
+		</div>
+		<!--end::Card toolbar-->
+	</div>
+	<!--end::Card header-->
+	<!--begin::Card body-->
+	
+<!--end::Contacts-->
+
+		</div>
+	</div>
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/plugins/custom/datatables/datatables.bundle.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+			$("#displayReportColumns").on("click", ".vendor-name", function () {
+                var vendorId = $(this).data("vendor-id");
+                $.ajax({
+						url: "/Vendor/Details/" + vendorId,
+                    method: "GET",
+                    success: function (data) {
+                        $("#vendorDetails").html(data);
+                    },
+                    error: function () {
+                        alert("Error loading vendor details.");
+                    }
+                });
+            });
+        });
+
+		
+
+		$('#SearchPatientWorklist').on('keyup', function () {
+			Vendortable.search(this.value).draw();
+
+		});
+
+		var Vendortable = $("#displayReportColumns").DataTable({
+			"aaSorting": [],
+
+		});
+
+    </script>
+
+
+	
+
+	
+	
+

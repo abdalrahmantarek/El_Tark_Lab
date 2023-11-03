@@ -1,0 +1,110 @@
+﻿@using LAB.ViewModel
+
+@model ServicesPricelistViewModel
+@{
+	Layout=null ;
+}
+
+<form class="form fv-plugins-bootstrap5 fv-plugins-framework" method="post" asp-controller="ServicesPricelist" asp-action="Add" >
+
+	<!--begin::hidden info-->
+	<input type="hidden" class="form-control form-control-solid" placeholder=""  asp-for="ServiceId">
+	<input type="hidden" class="form-control form-control-solid" placeholder="" asp-for="ContractId">
+	<input type="hidden" class="form-control form-control-solid" placeholder="" asp-for="LastUpdateBy">
+	<input type="hidden" class="form-control form-control-solid" placeholder="" asp-for="LastUpdateDate">
+	<input type="hidden" class="form-control form-control-solid" placeholder="" asp-for="LastUpdateFrom">
+
+
+
+
+	
+	<!--begin::Modal body-->
+	<div class="modal-body py-10 px-lg-17">
+		<!--begin::Scroll-->
+		<div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px" style="max-height: 490px;">
+			<!--begin::Input group-->
+			<div class="fv-row mb-7 fv-plugins-icon-container">
+				<!--begin::Label-->
+				<label class="required fs-6 fw-semibold mb-2">Service Name</label>
+				<!--end::Label-->
+				<!--begin::Input-->
+				<input type="text" class="form-control form-control-solid" placeholder="" asp-for="ServiceName">
+				<!--end::Input-->
+				<div class="fv-plugins-message-container invalid-feedback"></div>
+			</div>
+			<!--end::Input group-->
+			<!--begin::Input group-->
+			<div class="fv-row mb-7 fv-plugins-icon-container">
+				<!--begin::Label-->
+				<label class="required fs-6 fw-semibold mb-2">ServicePrice</label>
+				<!--end::Label-->
+				<!--begin::Input-->
+				<input  class="form-control form-control-solid" placeholder="" asp-for="ServicePrice">
+				<!--end::Input-->
+				<div class="fv-plugins-message-container invalid-feedback"></div>
+			</div>
+			<!--end::Input group-->
+			<!--begin::Input group-->
+			<div class="fv-row mb-15">
+				<!--begin::Label-->
+				<label class="fs-6 fw-semibold mb-2">Service Category</label>
+				<!--end::Label-->
+				<!--begin::Input-->
+				
+				<select asp-for="ServiceCat" id="addrefdocSelect" class="form-select" data-control="select2" data-placeholder="Select Ctegory Service">
+					<option></option>
+					
+					@foreach (var item in Model.categories)
+					{
+
+						<option value="@item.ServiceCatId">@item.ServiceCatName</option>
+					}
+				</select>
+				
+			
+				<!--end::Input-->
+			</div>
+			<!--end::Input group-->
+			<!--begin::Input group-->
+			<div class="fv-row mb-15">
+				<!--begin::Label-->
+				<label class="fs-6 fw-semibold mb-2">Services</label>
+				<!--end::Label-->
+				<!--begin::Input-->
+
+				<select asp-for="StandRef" id="addrefdocSelect" class="form-select" data-control="select2" data-placeholder="Select Ctegory Service">
+					<option></option>
+
+					@foreach (var item in Model.standardServices)
+					{
+
+						<option value="@item.ServiceId">@item.ServiceName</option>
+					}
+				</select>
+
+
+				<!--end::Input-->
+			</div>
+			<!--end::Input group-->
+
+
+		
+	<!--begin::Modal footer-->
+	<div class="modal-footer flex-center">
+		<!--begin::Button-->
+		<button type="reset" id="kt_modal_add_customer_cancel" class="btn btn-light me-3">Discard</button>
+		<!--end::Button-->
+		<!--begin::Button-->
+		<button type="submit" class="btn btn-primary">
+			<span class="indicator-label">Submit</span>
+			<span class="indicator-progress">
+				Please wait...
+				<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+			</span>
+		</button>
+		<!--end::Button-->
+	</div>
+		</div>
+	</div>
+	<!--end::Modal footer-->
+</form>

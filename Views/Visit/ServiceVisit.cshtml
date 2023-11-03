@@ -1,0 +1,97 @@
+﻿@model LAB.Models.Visit
+@{
+   // ViewData["Title"] = "ServiceVisit";
+}
+
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-xxl">
+		<!--begin::Card-->
+		<div class="card">
+			<!--begin::Card header-->
+			<div class="card-header border-0 pt-6">
+			
+			<!--begin::Card body-->
+			<div class="card-body pt-0">
+				<!--begin::Table-->
+				<div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+					<div class="table-responsive">
+						<table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="displayReportColumns">
+							<!--begin::Table head-->
+								<thead >
+								<!--begin::Table row-->
+								<tr  class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+
+										<th  class="min-w-125px sorting text-dark " tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Customer Name: activate to sort column ascending" style="width: 172.391px;">service</th>
+										<th class="min-w-125px sorting text-dark " tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 213.356px;">Barcode</th>
+										<th>
+											<!-- Your existing table -->
+
+											<a href="/Visit/PrintBarcodes?visitId=@Model.VisitId" class="btn btn-bg-success" id="printButton">Print Barcodes</a>
+										</th>
+										
+							   </tr>
+								<!--end::Table row-->
+							</thead>
+							<!--end::Table head-->
+							<!--begin::Table body-->
+							<tbody class="fw-semibold text-gray-600">
+								@foreach (var item in Model.VisitServices)
+								{
+									<tr>
+										<td>@item.Service.StandRefNavigation.ServiceName</td>
+										<td>
+											@{
+												string visitId = item.VisitId.ToString(); // Convert to string
+												string serviceId = item.ServiceId.ToString(); // Convert to string
+												string imageUrl = $"/GeneratedBarcode/Service_{serviceId}/{visitId}_{serviceId}.png";
+											}
+											<img width="150px" src="@imageUrl" class="img-thumbnail">
+										</td>
+										<td></td>
+									</tr>
+								}
+							
+
+							</tbody>
+							<!--end::Table body-->
+						</table>
+						<!--end::Table-->
+					</div>
+					<!--end::Card body-->
+				</div>
+			
+			</div>
+			<!--end::Content container-->
+
+		</div>
+	</div>
+</div>
+		
+	<script src="~/plugins/custom/datatables/datatables.bundle.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+	<script>
+		$(document).ready(function () {
+			var table = $("#displayReportColumns").DataTable({
+				"aaSorting": [],
+			});
+
+			$('#SearchPatientWorklist').on('keyup', function () {
+				table.search(this.value).draw();
+			});
+
+			// $("#printButton").on("click", function () {
+			// 	$.ajax({
+			// 		type: "POST",
+			// 		url: "/Visit/PrintBarcodes?visitId=@Model.VisitId",
+			// 		success: function (response) {
+			// 			// This will open the PDF for printing in a new tab
+			// 			// window.open(URL.createObjectURL(new Blob([response]))
+			// 		}
+			// 	});
+			// });
+		});
+	</script>

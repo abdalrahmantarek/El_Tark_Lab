@@ -1,0 +1,14 @@
+﻿
+
+@foreach (var item in Model)
+{
+    <div class="d-flex flex-stack py-4">
+        <!-- Vendor details -->
+        <div class="d-flex align-items-center">
+            <div class="ms-4">
+                <a class="fs-6 fw-bold text-gray-900 text-hover-primary mb-2 vendor-name" data-vendor-id="@item.VendorId">@item.VendorName</a>
+                <div class="fw-semibold fs-7 text-muted">@item.OfficialEmail</div>
+            </div>
+        </div>
+    </div>
+}

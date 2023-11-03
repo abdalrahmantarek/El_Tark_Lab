@@ -1,0 +1,272 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\components\app.js" />
+    <None Include="wwwroot\js\components\blockui.js" />
+    <None Include="wwwroot\js\components\cookie.js" />
+    <None Include="wwwroot\js\components\dialer.js" />
+    <None Include="wwwroot\js\components\drawer.js" />
+    <None Include="wwwroot\js\components\event-handler.js" />
+    <None Include="wwwroot\js\components\feedback.js" />
+    <None Include="wwwroot\js\components\image-input.js" />
+    <None Include="wwwroot\js\components\menu.js" />
+    <None Include="wwwroot\js\components\password-meter.js" />
+    <None Include="wwwroot\js\components\scroll.js" />
+    <None Include="wwwroot\js\components\scrolltop.js" />
+    <None Include="wwwroot\js\components\search.js" />
+    <None Include="wwwroot\js\components\stepper.js" />
+    <None Include="wwwroot\js\components\sticky.js" />
+    <None Include="wwwroot\js\components\swapper.js" />
+    <None Include="wwwroot\js\components\toggle.js" />
+    <None Include="wwwroot\js\components\util.js" />
+    <None Include="wwwroot\js\components\_init.js" />
+    <None Include="wwwroot\js\custom\account\api-keys\api-keys.js" />
+    <None Include="wwwroot\js\custom\account\billing\general.js" />
+    <None Include="wwwroot\js\custom\account\orders\classic.js" />
+    <None Include="wwwroot\js\custom\account\referrals\referral-program.js" />
+    <None Include="wwwroot\js\custom\account\security\license-usage.js" />
+    <None Include="wwwroot\js\custom\account\security\security-summary.js" />
+    <None Include="wwwroot\js\custom\account\settings\deactivate-account.js" />
+    <None Include="wwwroot\js\custom\account\settings\overview.js" />
+    <None Include="wwwroot\js\custom\account\settings\profile-details.js" />
+    <None Include="wwwroot\js\custom\account\settings\signin-methods.js" />
+    <None Include="wwwroot\js\custom\apps\calendar\calendar.js" />
+    <None Include="wwwroot\js\custom\apps\chat\chat.js" />
+    <None Include="wwwroot\js\custom\apps\contacts\edit-contact.js" />
+    <None Include="wwwroot\js\custom\apps\contacts\view-contact.js" />
+    <None Include="wwwroot\js\custom\apps\customers\add.js" />
+    <None Include="wwwroot\js\custom\apps\customers\list\export.js" />
+    <None Include="wwwroot\js\custom\apps\customers\list\list.js" />
+    <None Include="wwwroot\js\custom\apps\customers\update.js" />
+    <None Include="wwwroot\js\custom\apps\customers\view\add-payment.js" />
+    <None Include="wwwroot\js\custom\apps\customers\view\adjust-balance.js" />
+    <None Include="wwwroot\js\custom\apps\customers\view\invoices.js" />
+    <None Include="wwwroot\js\custom\apps\customers\view\payment-method.js" />
+    <None Include="wwwroot\js\custom\apps\customers\view\payment-table.js" />
+    <None Include="wwwroot\js\custom\apps\customers\view\statement.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\catalog\categories.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\catalog\products.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\catalog\save-category.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\catalog\save-product.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\add-address.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\add-auth-app.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\add-one-time-password.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\payment-method.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\transaction-history.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\update-address.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\update-password.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\update-phone.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\details\update-profile.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\listing\add.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\listing\export.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\customers\listing\listing.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\reports\customer-orders\customer-orders.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\reports\returns\returns.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\reports\sales\sales.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\reports\shipping\shipping.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\reports\views\views.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\sales\listing.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\sales\save-order.js" />
+    <None Include="wwwroot\js\custom\apps\ecommerce\settings\settings.js" />
+    <None Include="wwwroot\js\custom\apps\file-manager\list.js" />
+    <None Include="wwwroot\js\custom\apps\file-manager\settings.js" />
+    <None Include="wwwroot\js\custom\apps\inbox\compose.js" />
+    <None Include="wwwroot\js\custom\apps\inbox\listing.js" />
+    <None Include="wwwroot\js\custom\apps\inbox\reply.js" />
+    <None Include="wwwroot\js\custom\apps\invoices\create.js" />
+    <None Include="wwwroot\js\custom\apps\projects\list\list.js" />
+    <None Include="wwwroot\js\custom\apps\projects\project\project.js" />
+    <None Include="wwwroot\js\custom\apps\projects\settings\settings.js" />
+    <None Include="wwwroot\js\custom\apps\projects\targets\targets.js" />
+    <None Include="wwwroot\js\custom\apps\projects\users\users.js" />
+    <None Include="wwwroot\js\custom\apps\subscriptions\add\advanced.js" />
+    <None Include="wwwroot\js\custom\apps\subscriptions\add\customer-select.js" />
+    <None Include="wwwroot\js\custom\apps\subscriptions\add\products.js" />
+    <None Include="wwwroot\js\custom\apps\subscriptions\list\export.js" />
+    <None Include="wwwroot\js\custom\apps\subscriptions\list\list.js" />
+    <None Include="wwwroot\js\custom\apps\support-center\general.js" />
+    <None Include="wwwroot\js\custom\apps\support-center\tickets\create.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\permissions\add-permission.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\permissions\list.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\permissions\update-permission.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\roles\list\add.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\roles\list\update-role.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\roles\view\update-role.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\roles\view\view.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\list\add.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\list\export-users.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\list\table.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\add-auth-app.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\add-one-time-password.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\add-schedule.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\add-task.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\update-details.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\update-email.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\update-password.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\update-role.js" />
+    <None Include="wwwroot\js\custom\apps\user-management\users\view\view.js" />
+    <None Include="wwwroot\js\custom\authentication\reset-password\new-password.js" />
+    <None Include="wwwroot\js\custom\authentication\reset-password\reset-password.js" />
+    <None Include="wwwroot\js\custom\authentication\sign-in\general.js" />
+    <None Include="wwwroot\js\custom\authentication\sign-in\i18n.js" />
+    <None Include="wwwroot\js\custom\authentication\sign-in\two-steps.js" />
+    <None Include="wwwroot\js\custom\authentication\sign-up\coming-soon.js" />
+    <None Include="wwwroot\js\custom\authentication\sign-up\free-trial.js" />
+    <None Include="wwwroot\js\custom\authentication\sign-up\general.js" />
+    <None Include="wwwroot\js\custom\landing.js" />
+    <None Include="wwwroot\js\custom\pages\careers\apply.js" />
+    <None Include="wwwroot\js\custom\pages\general\contact.js" />
+    <None Include="wwwroot\js\custom\pages\general\pos.js" />
+    <None Include="wwwroot\js\custom\pages\pricing\general.js" />
+    <None Include="wwwroot\js\custom\pages\social\feeds.js" />
+    <None Include="wwwroot\js\custom\pages\user-profile\general.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\bidding.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-account.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-api-key.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-app.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-campaign.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\budget.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\complete.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\files.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\main.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\settings.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\targets.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\team.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\create-project\type.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\new-address.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\new-card.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\new-target.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\offer-a-deal\complete.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\offer-a-deal\details.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\offer-a-deal\finance.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\offer-a-deal\main.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\offer-a-deal\type.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\select-location.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\share-earn.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\top-up-wallet.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\two-factor-authentication.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\upgrade-plan.js" />
+    <None Include="wwwroot\js\custom\utilities\modals\users-search.js" />
+    <None Include="wwwroot\js\custom\utilities\search\horizontal.js" />
+    <None Include="wwwroot\js\custom\widgets.js" />
+    <None Include="wwwroot\js\layout\builder.js" />
+    <None Include="wwwroot\js\layout\search.js" />
+    <None Include="wwwroot\js\layout\sidebar.js" />
+    <None Include="wwwroot\js\layout\theme-mode-user.js" />
+    <None Include="wwwroot\js\layout\theme-mode.js" />
+    <None Include="wwwroot\js\layout\toolbar.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\vendors\plugins\apexchart.init.js" />
+    <None Include="wwwroot\js\vendors\plugins\bootstrap-markdown.init.js" />
+    <None Include="wwwroot\js\vendors\plugins\datatables.init.js" />
+    <None Include="wwwroot\js\vendors\plugins\dropzone.init.js" />
+    <None Include="wwwroot\js\vendors\plugins\prism.init.js" />
+    <None Include="wwwroot\js\vendors\plugins\select2.init.js" />
+    <None Include="wwwroot\js\vendors\plugins\sweetalert2.init.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-1.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-10.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-12.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-13.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-17.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-19.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-4.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-6.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-8.js" />
+    <None Include="wwwroot\js\widgets\cards\widget-9.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-1.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-10.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-11.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-12.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-13.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-14.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-15.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-16.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-17.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-18.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-19.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-2.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-20.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-21.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-22.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-23.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-24.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-25.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-26.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-27.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-28.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-29.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-3.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-30.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-31.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-32.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-33.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-34.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-35.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-36.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-37.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-38.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-39.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-4.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-40.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-41.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-42.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-43.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-44.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-45.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-46.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-5.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-6.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-7.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-8.js" />
+    <None Include="wwwroot\js\widgets\charts\widget-9.js" />
+    <None Include="wwwroot\js\widgets\forms\widget-1.js" />
+    <None Include="wwwroot\js\widgets\lists\widget-24.js" />
+    <None Include="wwwroot\js\widgets\maps\widget-1.js" />
+    <None Include="wwwroot\js\widgets\maps\widget-2.js" />
+    <None Include="wwwroot\js\widgets\players\widget-1.js" />
+    <None Include="wwwroot\js\widgets\players\widget-2.js" />
+    <None Include="wwwroot\js\widgets\sliders\widget-1.js" />
+    <None Include="wwwroot\js\widgets\sliders\widget-3.js" />
+    <None Include="wwwroot\js\widgets\sliders\widget-7.js" />
+    <None Include="wwwroot\js\widgets\tables\widget-14.js" />
+    <None Include="wwwroot\js\widgets\tables\widget-15.js" />
+    <None Include="wwwroot\js\widgets\tables\widget-16.js" />
+    <None Include="wwwroot\js\widgets\tables\widget-3.js" />
+    <None Include="wwwroot\js\widgets\tables\widget-4.js" />
+    <None Include="wwwroot\js\widgets\tables\widget-5.js" />
+    <None Include="wwwroot\js\widgets\timeline\widget-1.js" />
+    <None Include="wwwroot\js\widgets\timeline\widget-2.js" />
+    <None Include="wwwroot\js\widgets\timeline\widget-4.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="BarCode" Version="2023.10.1" />
+    <PackageReference Include="BouncyCastle.NetCore" Version="2.2.1" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="EPPlus" Version="6.2.10" />
+    <PackageReference Include="itext7" Version="8.0.2" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.2" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
+    <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.0.4" />
+    <PackageReference Include="QRCoderNetCore" Version="1.0.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LAB.Models.ServicesPricelist>
+
+
+
+<table class="table table-bordered table-hover" style="border-color: red;">
+
+
+        <thead>
+          <tr>
+            <th>ServiceName</th>
+            <th>ServiceNameAr</th>
+            <th>ServicePrice</th>
+            <th>ServiceCat</th>
+            <th>StandRef</th>
+            <th>LastUpdateBy</th>
+            <th>LastUpdateFrom</th>
+            <th>LastUpdateDate</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+
+           @foreach (var item in Model)
+    {
+        <tr>
+           
+                <td>@item.ServiceName</td>
+                <td>@item.ServiceNameAr</td>
+                <td>@item.ServicePrice</td>
+                <td>@item.ServiceCat</td>
+                <td>@item.StandRef</td>
+                <td>@item.LastUpdateBy</td>
+                <td>@item.LastUpdateFrom</td>
+                <td>@item.LastUpdateDate</td>
+                
+            
+
+        </tr>
+        
+    }
+
+
+        </tbody>
+
+    
+        <a asp-action="Vendor" asp-controller="index" class="btn btn-primary" style="text-decoration:none">Back to list</a>
+
+
+    </table>

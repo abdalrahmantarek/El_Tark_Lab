@@ -1,0 +1,656 @@
+﻿
+
+@model PatientInvoice
+@{
+
+	var servicelist = ViewData["servicelist"] as List<VisitService>;
+	
+
+}
+
+
+<!--begin::Vendor Stylesheets(used for this page only)-->
+<link href="~/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+
+<!--end::Vendor Stylesheets-->
+<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+<link href="~/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+
+<link href="~/css/style.bundle.css" rel="stylesheet" type="text/css" />
+<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+<link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
+<!--begin::Fonts(mandatory for all pages)-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+<!--end::Fonts-->
+
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid mt-10">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-xxl">
+		<!-- begin::Invoice 3-->
+		<div class="card">
+			<!-- begin::Body-->
+			<div class="card-body py-20">
+				<!-- begin::Wrapper-->
+				<div class="mw-lg-950px mx-auto w-100">
+
+
+					<!-- begin::logo-->
+					<div>
+						<img src="~/Invoicelogo.png" width="150px" />
+					</div>
+					<!-- end::logo-->
+
+
+
+
+
+
+
+
+
+					<!-- begin::Header-->
+					<div class="d-flex justify-content-between flex-column flex-sm-row ">
+						<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
+							<div class="fw-bolder text-gray-800 fs-2qx ">INVOICE</div>
+					
+							<!--end::Logo-->
+							<div >@Model.InvoiceId</div>
+						
+						</div>
+
+						<div class="text-sm-end">
+					
+							<!--begin::Text-->
+							<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
+								
+								<div>@ViewBag.VendorName</div>
+								<div>@Model.Visit.PatientInssurredId</div>
+					
+							</div>
+							<!--end::Text-->
+						</div>
+					</div>
+					<!--end::Header-->
+					<!--begin::Body-->
+					<div class="pb-12 mt-2">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column gap-7 gap-md-10">
+							<!--begin::Message-->
+							<div class="fw-bold fs-2">
+								<div class="flex-root d-flex flex-column mb-2">
+									<span class="text-muted text-md-start">
+										Date:
+                                        <span class="fs-5">@Model.LastUpdateDate</span>
+                                    </span>
+								</div>
+								<div>
+									<p>
+										Visit Number:
+										@Model.Visit.VisitId
+									</p>
+								</div>
+								<div>
+									<p>
+										Name:
+										@Model.Visit.Patient.PatientName
+
+										<span class="fs-6 d-print-none">(@Model.Visit.Patient.PatientEmail)</span>
+									</p>
+
+
+								</div>
+                                <div>
+                                    @{
+                                        var years = DateTime.Now.Year - (Model.Visit.Patient.PatientBirthdate.Value.Year);
+                                        var month = DateTime.Now.Month - (Model.Visit.Patient.PatientBirthdate.Value.Month);
+                                        var days = DateTime.Now.Day - (Model.Visit.Patient.PatientBirthdate.Value.Day);
+                                    }
+
+									@if(years <= 0)
+									{
+
+                                        <p> Age: 
+                                            @month
+                                            month /
+                                            @days  days
+
+											@if (Model.Visit.Patient.PatientGender == "M")
+											{
+                                                <span class="fs-6">/ Male </span>
+											}
+
+											else
+											{
+                                                <span class="fs-6">/ Female </span>
+											}
+
+									</p>
+									}						
+
+
+									else
+									{
+                                        <p>Age: 
+                                            
+											@years years
+
+											@if (Model.Visit.Patient.PatientGender == "M")
+											{
+                                                <span class="fs-6">/ Male </span>
+											}
+
+											else
+											{
+                                                <span class="fs-6">/ Female</span>
+											}
+										</p>
+										
+									}
+									
+                                    
+
+								</div>
+								<div>
+									<p>
+										Doctor Name :
+										@Model.Visit.RefererDoctorNavigation.DoctorName
+									</p>
+								</div>
+							</div>
+						
+							<!--begin:Order summary-->
+							<div class="d-flex justify-content-between flex-column">
+								<!--begin::Table-->
+								<div class="table-responsive border-bottom mb-9">
+									<table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+										<thead>
+											<tr class="border-bottom fs-6 fw-bold text-muted">
+												<th class="min-w-175px pb-2">Services</th>
+												 <th class="min-w-70px  pb-2">Price</th>
+											
+											</tr>
+										</thead>
+										<tbody class="fw-semibold text-gray-600">
+											<!--begin::service-->
+											
+												<!--begin::Product-->
+												@foreach (var s in servicelist)
+                                                {<tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <!--begin::Thumbnail-->
+                                                        <!--end::Thumbnail-->
+                                                        <!--begin::Title-->
+                                                        <div class="ms-5">
+                                                            <div class="fw-bold">@s.Service.ServiceName</div>
+                                                            
+                                                        </div>
+                                                        <!--end::Title-->
+                                                    </div>
+                                                </td>
+                                                   <!--end::Product-->
+                                                    <!--begin::SKU-->
+                                                    <td class="">0.00</td>
+                                                 
+                                                </tr>
+												}
+												
+											
+									
+										
+										
+											<!--begin::VAT-->
+
+											<tr>
+												<td colspan="3" class="text-end">Copayment</td>
+												
+												<td class="text-end">@Model.Visit.Copayment %</td>
+											</tr>
+											<!--end::VAT-->
+											<!--begin::Shipping-->
+											<tr>
+												<td colspan="3" class="text-end">paied amount : </td>
+												<td id="paidAmount" class="text-end">@Model.PaidValue</td>
+											</tr>
+
+											<!--end::Shipping-->
+											<!--begin::Shipping-->
+											<tr>
+												@{
+													var x = ViewBag.PatientCost - Model.PaidValue;
+												}
+												<td colspan="3" class="text-end">remaining amount : </td>
+												<td id="remainingAmount" class="text-end">@x</td>
+
+											</tr>
+                                            
+											<!--end::Shipping--> 
+											<!--begin::Grand total-->
+											<tr>
+												
+												<td colspan="3" class="fs-3 text-dark fw-bold text-end">Patient Cost</td>
+												
+
+												<td class="text-dark fs-3 fw-bolder text-end">@ViewBag.PatientCost</td>
+												<td class="text-end">@Model.Currency</td>
+
+											</tr>
+											<!--end::Grand total-->
+										</tbody>
+									</table>
+								</div>
+								<!--end::Table-->
+							</div>
+							<!--end:Order summary-->
+						</div>
+						<!--end::Wrapper-->
+					</div>
+					<!--end::Body-->
+					<!-- begin::Footer-->
+					<div class="d-flex flex-stack flex-wrap mt-lg-10 pt-13">
+						<!-- begin::Actions-->
+						<div class="my-1 me-5">
+							<!-- begin::Pint-->
+							<button type="button" class="btn btn-success my-1 me-12 d-print-none" onclick="window.print();">Print Invoice</button>
+							<!-- end::Pint-->
+							<!-- begin::Download-->
+						
+
+							<button type="button" id="paing_btn" class="btn btn-primary d-print-none" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Paying</button>
+							<!-- end::Download-->
+						</div>
+						<!-- end::Actions-->
+						<!-- begin::Action-->
+						
+						<!-- end::Action-->
+					</div>
+					<!-- end::Footer-->
+				</div>
+				<!-- end::Wrapper-->
+			</div>
+			<!-- end::Body-->
+		</div>
+		<!-- end::Invoice 1-->
+	</div>
+	<!--end::Content container-->
+</div>
+<!--end::Content-->
+
+<!--company-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-xxl">
+		<!-- begin::Invoice 3-->
+		<div class="card">
+			<!-- begin::Body-->
+			<div class="card-body py-20 mt-15">
+				<!-- begin::Wrapper-->
+				<div class="mw-lg-950px mx-auto w-100">
+
+
+
+
+
+
+					<!-- begin::logo-->
+					<div>
+						<img src="~/Invoicelogo.png" width="150px" />
+					</div>
+					<!-- end::logo-->
+
+
+
+
+
+
+					<!-- begin::Header-->
+					<div class="d-flex justify-content-between flex-column flex-sm-row ">
+						<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
+							<div class="fw-bolder text-gray-800 fs-2qx ">INVOICE</div>
+							@* 		<h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">INVOICE</h4> *@
+							<!--end::Logo-->
+							<div>@Model.InvoiceId</div>
+
+						</div>
+						<!--end::Logo-->
+						<div class="text-sm-end">
+							<!--begin::Logo-->
+							<!--end::Logo-->
+							<!--begin::Text-->
+							<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
+								<div>@ViewBag.VendorName</div>
+								<div></div>
+							</div>
+							<!--end::Text-->
+						</div>
+					</div>
+					<!--end::Header-->
+					<!--begin::Body-->
+					<div class="pb-12">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column gap-7 gap-md-10">
+							<!--begin::Message-->
+							<div class="flex-root d-flex flex-column">
+								<span class="text-muted">Date:
+                                    <span class="fs-5">@Model.LastUpdateDate</span>
+                                </span>
+							</div>
+							<div class="fw-bold fs-2"> Name: 
+
+								@Model.Visit.Patient.PatientName
+								<div>
+								    Inssurred Id :
+                                    <span class="fs-6">@Model.Visit.PatientInssurredId</span>
+                                </div>
+
+								<div>
+									<p>
+										Visit Number:
+										@Model.Visit.VisitId
+									</p>
+								</div>
+								<div>
+									<p>
+										Doctor Name :
+										@Model.Visit.RefererDoctorNavigation.DoctorName
+									</p>
+								</div>
+							</div>
+							
+							<!--begin:Order summary-->
+							<div class="d-flex justify-content-between flex-column">
+								<!--begin::Table-->
+								<div class="table-responsive border-bottom mb-9">
+									<table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+										<thead>
+											<tr class="border-bottom fs-6 fw-bold text-muted">
+												<th class="min-w-175px pb-2">Services</th>
+												 <th class="min-w-70px text pb-2">price</th>
+											
+											</tr>
+										</thead>
+										<tbody class="fw-semibold text-gray-600">
+											<!--begin::service-->
+											<!--begin::Product-->
+											@foreach (var s in servicelist)
+											{
+												<tr>
+													<td>
+														<div class="d-flex align-items-center">
+															<!--begin::Thumbnail-->
+															<!--end::Thumbnail-->
+															<!--begin::Title-->
+															<div class="ms-5">
+																<div class="fw-bold">@s.Service.ServiceName</div>
+
+															</div>
+															<!--end::Title-->
+														</div>
+													</td>
+													  <!--end::Product-->
+												<!--begin::SKU-->
+												<td class="">@s.Service.ServicePrice</td>
+												<!--end::SKU-->
+										
+												</tr>
+											}
+
+
+
+
+											<!--begin::Subtotal-->
+											<tr>
+												<td colspan="3" class="text-end">Total Cost</td>
+												<td class="text-end">@Model.InvoiceCost</td>
+												<td class="text-end">@Model.Currency</td>
+
+											</tr>
+											<!--end::Subtotal-->
+											<!--begin::VAT-->
+
+											<tr>
+												<td colspan="3" class="text-end">Copayment</td>
+												<td class="text-end">@Model.Visit.Copayment %</td>
+											</tr>
+											<!--end::VAT-->
+											<tr>
+
+												<td colspan="3" class="fs-3 text-dark fw-bold text-end">Vendor Cost</td>
+
+
+												<td class="text-dark fs-3 fw-bolder text-end">@ViewBag.VendorCost</td>
+												<td class="text-end">@Model.Currency</td>
+
+
+
+											</tr>
+											<!--end::Grand total-->
+										</tbody>
+									</table>
+								</div>
+								<!--end::Table-->
+							</div>
+							<!--end:Order summary-->
+						</div>
+						<!--end::Wrapper-->
+					</div>
+					<!--end::Body-->
+					<!-- begin::Footer-->
+					<div class="d-flex flex-stack flex-wrap mt-lg-10 pt-13">
+						<!-- begin::Actions-->
+						<div class="my-1 me-5">
+							<!-- begin::Pint-->
+							<button type="button" class="btn btn-success my-1 me-12 d-print-none" onclick="window.print();">Print Invoice</button>
+							<!-- end::Pint-->
+						</div>
+						<!-- end::Actions-->
+						<!-- begin::Action-->
+						<!-- end::Action-->
+					</div>
+					<!-- end::Footer-->
+				</div>
+				<!-- end::Wrapper-->
+			</div>
+			<!-- end::Body-->
+		</div>
+		<!-- end::Invoice 1-->
+	</div>
+	<!--end::Content container-->
+</div>
+<!--company-->
+
+
+<!-- startcard payvalue-->
+<!--begin::Modal - Customers - Add-->
+<div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
+	<!--begin::Modal dialog-->
+	<div class="modal-dialog modal-dialog-centered mw-650px">
+		<!--begin::Modal content-->
+		<div class="modal-content">
+			<!--begin::Form-->
+			<form class="form" action="#" id="kt_modal_add_customer_form" onsubmit="return validateForm()">
+				<!--begin::Modal header-->
+				<div class="modal-header" id="kt_modal_add_customer_header">
+					<!--begin::Modal title-->
+					<h2 class="fw-bold">paying</h2>
+					<!--end::Modal title-->
+					<!--begin::Close-->
+					<div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+						<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+						<span class="svg-icon svg-icon-1" onclick="cancel()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+								<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+							</svg>
+						</span>
+						<!--end::Svg Icon-->
+					</div>
+					<!--end::Close-->
+				</div>
+				<!--end::Modal header-->
+				<!--begin::Modal body-->
+				<div class="modal-body py-10 px-lg-17">
+					<!--begin::Scroll-->
+					<div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+						<!--begin::Input group-->
+						<div class="fv-row mb-7">
+						@* 	<!--begin::Label-->
+							<label class="required fs-6 fw-semibold mb-2" asp-for="InvoiceCost"></label>
+							<!--end::Label-->
+							<!--begin::Input-->
+							<input type="text" class="form-control form-control-solid" disabled placeholder="" name="InvoiceCost" value="@Model.InvoiceCost" /> *@
+							<input type="hidden" class="form-control form-control-solid" disabled placeholder="" name="InvoiceId" value="@Model.InvoiceId" />
+							<!--end::Input-->
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group-->
+						<div class="fv-row mb-7">
+							<!--begin::Label-->
+							<label class="required fs-6 fw-semibold mb-2" asp-for="PaidValue"></label>
+							<!--end::Label-->
+							<!--begin::Input-->
+							<input type="text" class="form-control form-control-solid" id="PaidValue" placeholder="" name="PaidValue" value="@ViewBag.PatientCost" />
+							<!--end::Input-->
+						</div>
+						<!--end::Input group-->
+				
+						<!--end::Input group-->
+						<input type="hidden" class="form-control form-control-solid" disabled placeholder="" name="PatientCost" value="@ViewBag.PatientCost" />
+
+					</div>
+					<!--end::Scroll-->
+				</div>
+				<!--end::Modal body-->
+				<!--begin::Modal footer-->
+				<div class="modal-footer flex-center">
+					<!--begin::Button-->
+					<button type="reset" id="kt_modal_add_customer_cancel" class="btn btn-light me-3" onclick="cancel()">Discard</button>
+					<!--end::Button-->
+					<!--begin::Button-->
+					<button type="submit" id="submitForm" class="btn btn-primary">
+						<span class="indicator-label">Submit</span>
+						<span class="indicator-progress">
+							Please wait...
+							<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+						</span>
+					</button>
+					<!--end::Button-->
+				</div>
+				<!--end::Modal footer-->
+			</form>
+			<!--end::Form-->
+		</div>
+	</div>
+</div>
+<!--end::Modal - Customers - Add-->
+<!--end card payvalue-->
+
+
+<script>var hostUrl = "assets/";</script>
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="~/plugins/global/plugins.bundle.js"></script>
+<script src="~/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="~/plugins/custom/datatables/datatables.bundle.js"></script>
+<!--end::Vendors Javascript-->
+<!--begin::Custom Javascript(used for this page only)-->
+<script src="~/js/widgets.bundle.js"></script>
+<script src="~/js/custom/widgets.js"></script>
+<script src="~/js/custom/apps/chat/chat.js"></script>
+<script src="~/js/custom/utilities/modals/upgrade-plan.js"></script>
+@* <script src="~/js/custom/utilities/modals/create-app.js"></script> *@
+<script src="~/js/custom/utilities/modals/users-search.js"></script>
+<!--end::Custom Javascript-->
+<!--end::Javascript-->
+ <script src="~/js/custom/apps/customers/add.js"></script>
+ <script>
+	$(document).ready(function () {
+    // Event listener for form submission
+    $('#kt_modal_add_customer_form').submit(function (event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Get the value of the "PaidValue" input and InvoiceCost
+        var paing_btn = document.getElementById('paing_btn');
+        var paidValue = parseFloat($('input[name="PaidValue"]').val());
+		var PatientCost = parseFloat($('input[name="PatientCost"]').val());
+        var InvoiceId = $('input[name="InvoiceId"]').val();
+
+        // Check if PaidValue exceeds InvoiceCost
+        if (paidValue > PatientCost) {
+            // Display a Swal alert with an error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Paid Value Error',
+                text: 'Paid Value cannot exceed PatientCost',
+            });
+            return;
+        }
+
+        // Define the URL of your action
+        var actionUrl = '/PatientInvoice/Pay';
+
+        // Make an AJAX POST request to send the "PaidValue"
+        $.ajax({
+            type: 'POST',
+            url: actionUrl,
+            data: {
+                PaidValue: paidValue,
+                InvoiceId: InvoiceId,
+                PatientCost: PatientCost,
+            },
+            success: function (response) {
+                if (response.status == "ok") {
+                    // Update the "remainingAmount" and "paidAmount" <td> elements
+                    $('#remainingAmount').text(response.remainingvalue);
+                    $('#paidAmount').text(response.paidValue);
+                    paing_btn.style.display = "none";
+                    document.getElementById('kt_modal_add_customer_form').reset();
+                    // Properly hide the modal
+                    $('#kt_modal_add_customer').modal('hide');
+					$('.modal-backdrop').remove();
+                }
+            },
+            error: function (xhr, status, error) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Error',
+						text: error,
+					});
+            }
+        });
+    });
+});
+</script>
+
+ <script>
+	// Get the remainingAmount td element
+	var remainingAmount = document.getElementById("remainingAmount");
+	
+
+
+	// function validateForm() {
+	// Get the paing_btn button element
+	var paingBtn = document.getElementById("paing_btn");
+
+	// // Check if the remainingAmount is greater than 0, and hide the button if it is
+	if (remainingAmount && parseInt(remainingAmount.textContent) <= 0 ) {
+
+		paingBtn.style.display = "none";
+	 }
+
+	 
+</script>
+
+<script>
+	function cancel() {
+		var card = document.getElementById("kt_modal_add_customer")
+		card.style.display = "none";
+		$('.modal-backdrop').remove();
+	}
+</script>
+
+
+

@@ -1,0 +1,76 @@
+﻿@model ServicesPricelist
+<div id="kt_app_content" class="app-content flex-column-fluid">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-xxl">
+		<!--begin::Card-->
+		<div class="card">
+			<div class="card-body pt-0">
+				<!--begin::Table-->
+				<div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+					<div class="table-responsive">
+						<table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="displayServicePriceList">
+							<!--begin::Table head-->
+							<thead>
+								<!--begin::Table row-->
+								<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+									<th class="min-w-125px sorting text-dark fw-bold" tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Customer Name: activate to sort column ascending" style="width: 172.391px;">Service Name</th>
+									<th class="min-w-125px sorting text-dark fw-bold" tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 213.356px;">ServiceNameAr</th>
+									<th class="min-w-125px sorting text-dark fw-bold" tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending" style="width: 189.524px;">ServicePrice</th>
+									<th class="min-w-125px sorting text-dark fw-bold" tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Payment Method: activate to sort column ascending" style="width: 172.391px;">ServiceCat</th>
+									<th class="min-w-125px sorting text-dark fw-bold" tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Created Date: activate to sort column ascending" style="width: 223.967px;">ContractId</th>
+									<th class="min-w-125px sorting text-dark fw-bold" tabindex="0" aria-controls="kt_customers_table" rowspan="1" colspan="1" aria-label="Created Date: activate to sort column ascending" style="width: 223.967px;">StandRef</th>
+								</tr>
+								<!--end::Table row-->
+							</thead>
+							<!--end::Table head-->
+							<!--begin::Table body-->
+							<tbody class="fw-semibold text-gray-600">
+
+									<tr class="odd">
+										<!--begin::Name=-->
+										<td>
+											@Model.ServiceName
+										</td>
+										<!--end::Name=-->
+										<!--begin::Patient NID Type=-->
+										<td>
+										@Model.ServiceNameAr
+										</td>
+										<!--end::Patient NID Type=-->
+										<!--begin::Patient NID =-->
+										<td>
+										@Model.ServicePrice
+										</td>
+										<!--end::Patient NID Type=-->
+										<!--begin::Patient Address=-->
+										<td>
+										@Model.ServiceCat
+										</td>
+										<!--end::Patient Email=-->
+										<!--begin::Patient Email=-->
+										<td>
+										@Model.ContractId
+										</td>
+										<!--end::Patient Email=-->
+										<!--begin::Patient Gender=-->
+										<td>
+										@Model.StandRef
+										</td>
+										<!--end::Patient Gender=-->
+									</tr>
+							</tbody>
+							<!--end::Table body-->
+						</table>
+						<!--end::Table-->
+						<a href="/ServicesPricelist/index" class="badge badge-light-success p-4" style=""> Back to ServicesPricelist</a>
+					</div>
+					<!--end::Card body-->
+				</div>
+	
+				</div>
+				<!--end::Modal - New Card-->
+				<!--end::Modals-->
+			</div>
+		</div>
+	</div>
+</div>

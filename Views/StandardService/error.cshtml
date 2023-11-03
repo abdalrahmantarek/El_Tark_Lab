@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LAB.Models.StandardService>
+
+
+
+<table class="table table-bordered table-hover" style="border-color: red;">
+
+
+        <thead>
+          <tr>
+            <th>ServiceName</th>
+            <th>ServiceAvailability</th>
+             <th>ServiceAlphaCode</th>
+               <th>ServiceUnit</th>
+               <th>IsPackage</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+
+           @foreach (StandardService item in Model)
+    {
+        <tr>
+           
+            <td>@item.ServiceName</td>
+            <td>@item.ServiceAvailability</td>
+            <td>@item.ServiceAlphaCode</td>
+
+
+            <td>@item.ServiceUnit</td>
+
+            <td>@item.IsPackage</td>
+
+
+        </tr>
+        
+    }
+
+
+        </tbody>
+
+    
+        <a asp-action="Index" asp-controller="StandardService" class="btn btn-primary" style="text-decoration:none">Back to list</a>
+
+
+    </table>

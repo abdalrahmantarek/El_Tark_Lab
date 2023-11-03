@@ -1,0 +1,224 @@
+﻿@model Patient
+@{
+	Layout = null;
+}
+<!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="الاسم">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label required fw-bold fs-6">Full Name</label>
+	<!--end::Label-->
+	<!--begin::Col-->
+	<div class="col-lg-10">
+
+		<input type="text" name="Patient.PatientName" class="form-control form-control-lg  mb-3 mb-lg-0" placeholder="Full Name" required value="@Model?.PatientName" />
+
+
+	</div>
+	<!--end::Col-->
+</div>
+<!--end::Input group-->
+
+
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title=" الرقم القومي">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label fw-bold fs-6 mt-5">National Id</label>
+	<!--end::Label-->
+
+	<div class="col-10">
+		<input type="text" name="Patient.PatientNid" class="form-control form-control-lg  mb-3 mb-lg-0" placeholder="National ID" value="@Model?.PatientNid" />
+
+
+	</div>
+</div>
+@* <!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="  صوره الرقم القومي">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label  fw-bold fs-6 mt-5">National File</label>
+	<!--end::Label-->
+
+	<div class="col-md-10 m-auto">
+		<div class="attachment-container">
+			<label for="nationalId" class="attachment-label">Attach National ID</label>
+			<div class="custom-file">
+				<input type="file" class="custom-file-input attachment-input" name="patientFileNID" id="nationalId">
+				<label class="custom-file-label" for="nationalId"></label>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!--end::Input group--> *@
+<!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title=" العنوان">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label  fw-bold fs-6">Address</label>
+	<!--end::Label-->
+	<!--begin::Col-->
+	<div class="col-lg-10 fv-row">
+
+		<input type="text" name="Patient.PatientAddress" class="form-control form-control-lg  mb-3 mb-lg-0" placeholder="Address" value="@Model?.PatientAddress" />
+
+	</div>
+	<!--end::Col-->
+</div>
+<!--end::Input group-->
+<!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="الايميل">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label  fw-bold fs-6">Email</label>
+	<!--end::Label-->
+	<!--begin::Col-->
+	<div class="col-lg-10 fv-row">
+
+		<input type="text" name="Patient.PatientEmail" id="kt_inputmask_8" class="form-control form-control-lg  mb-3 mb-lg-0" placeholder="Email" value="@Model?.PatientEmail" />
+
+	</div>
+	<!--end::Col-->
+</div>
+<!--end::Input group-->
+<!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="رقم الهاتف">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label required fw-bold fs-6">Telephone</label>
+	<!--end::Label-->
+	<!--begin::Col-->
+	<!--begin::Col-->
+	<div class="col-lg-10 fv-row">
+		<div class="row">
+			<!--begin::Col-->
+			<div class="col-lg-6 fv-row">
+
+
+				<input type="text" name="Patient.PatientTel1" class="form-control form-control-lg  mb-3 mb-lg-0" placeholder="Telephone(1)" pattern="01[0-2,5]{1}[0-9]{8}" required value="@Model?.PatientTel1" />
+			</div>
+			<!--end::Col-->
+			<div class="col-lg-6 fv-row">
+
+				<input type="text" name="Patient.PatientTel2" class="form-control form-control-lg  mb-3 mb-lg-0" placeholder="Telephone(2)" pattern="01[0-2,5]{1}[0-9]{8}" value="@Model?.PatientTel2" />
+
+			</div>
+
+
+		</div>
+
+	</div>
+	<!--end::Col-->
+	<!--end::Col-->
+</div>
+<!--end::Input group-->
+<!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="الدولة">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label fw-bold fs-6">Country</label>
+	<!--end::Label-->
+	<!--begin::Col-->
+	<!--begin::Col-->
+	<div class="col-lg-10 fv-row">
+		<div class="row">
+			<div class="col-lg-6 fv-row">
+
+
+			</div>
+			<!--begin::Col-->
+			<div class="col-lg-6 fv-row" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="النوع">
+
+				<select data-control="select2" name="Patient.PatientGender" id="GenderId" data-placeholder="Select Gender" class="form-control">
+
+					<option></option>
+					<option value="F">Female</option>
+					<option value="M">Male</option>
+				</select>
+
+			</div>
+			<!--end::Col-->
+
+
+
+
+		</div>
+
+	</div>
+	<!--end::Col-->
+	<!--end::Col-->
+</div>
+<!--end::Input group-->
+<!--begin::Input group-->
+<div class="row mb-6" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="تاريخ الميلاد">
+	<!--begin::Label-->
+	<label class="col-lg-2 col-form-label fw-bold fs-6">Birth Date</label>
+	<!--end::Label-->
+	<!--begin::Col-->
+	<div class="col-lg-10">
+		<div class="row">
+			<!--begin::Col-->
+			<div class="col-lg-6 fv-row">
+				<input class="form-control form-control-lg mb-3 mb-lg-0" onchange="updateAgeAndAgeType(this.value)" name="Patient.PatientBirthdate" value="@Model?.PatientBirthdate" placeholder="Birth Date" id="kt_datepicker_1" />
+			</div>
+			<div class="col-lg-6 fv-row" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="العمر">
+				<div class="row">
+					<div class="col-6">
+						<input class="form-control form-control-lg mb-3 mb-lg-0" id="ageId" name="PatientAge" placeholder="Age" value="0" />
+					</div>
+					<div class="col-6">
+						<select class="form-control me-2" required id="AgeType" onchange="setbirthDate()">
+							<option value="1">Year</option>
+							<option value="2">Month</option>
+							<option value="3">Day</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		@* <div class="row">
+		<!--begin::Col-->
+		<div class="col-lg-6 fv-row">
+		<input class="form-control form-control-lg mb-3 mb-lg-0" onchange="setAge(this.value)" name="Patient.PatientBirthdate" value="@Model?.PatientBirthdate" placeholder="Birth Date" id="kt_datepicker_1" />
+		</div>
+		<div class="col-lg-6 fv-row" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="العمر">
+		<div class="row">
+		<div class="col-6">
+		<input class="form-control form-control-lg mb-3 mb-lg-0" onchange="setbirthDate()" id="ageId" name="PatientAge" placeholder="Age" value="0" />
+		</div>
+		<div class="col-6">
+		<select class="form-control me-2" required id="AgeType" onchange="setbirthDate()">
+		<option value="1">Year</option>
+		<option value="2">Month</option>
+		<option value="3">Day</option>
+		</select>
+		</div>
+		</div>
+		</div>
+		</div> *@
+		@* <div class="row">
+		<!--begin::Col-->
+		<div class="col-lg-6 fv-row">
+
+
+		<input class="form-control form-control-lg  mb-3 mb-lg-0" onchange="setAge(this.value)" name="Patient.PatientBirthdate" value="@Model?.PatientBirthdate" placeholder="Birth Date" id="kt_datepicker_1" />
+
+		</div>
+		<div class="col-lg-6 fv-row" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-dismiss="click" data-bs-placement="top" title="العمر">
+		<div class="row">
+		<div class="col-6">
+		<input class="form-control form-control-lg  mb-3 mb-lg-0" onchange="setbirthDate()" id="ageId" name="PatientAge" placeholder="Age" value="" />
+		</div>
+		<div class="col-6">
+		<select class="form-control me-2" required id="AgeType" onchange="setbirthDate()">
+		<option value="1">Year</option>
+		<option value="2">Month</option>
+		<option value="3">Day</option>
+
+		</select>
+		</div>
+		</div>
+		</div>
+		</div>
+		*@
+
+
+
+	</div>
+	<!--end::Col-->
+</div>
+<!--end::Input group-->

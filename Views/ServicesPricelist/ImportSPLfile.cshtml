@@ -1,0 +1,27 @@
+﻿<form method="post" asp-action="Upload" asp-controller="ServicesPricelist" enctype="multipart/form-data">
+    <div class="info2">
+
+        @Html.AntiForgeryToken()
+
+
+        <div class="file-upload">
+
+            <button type="submit" id="submit" value="Upload" class="file-upload-btn form-control">Upload</button>
+            <div class="image-upload-wrap">
+                @*<input type="file" name="excelFile" />*@
+                <input class="file-upload-input form-control" name="file" type='file' id="file" />
+                <div class="drag-text">
+                    <h3>Drag and drop a file or select add Image</h3>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</form>
