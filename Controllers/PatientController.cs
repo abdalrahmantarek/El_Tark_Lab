@@ -3,10 +3,12 @@ using LAB.IService;
 using LAB.Models;
 using LAB.Service;
 using LAB.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LAB.Controllers
 {
+    [Authorize]
     public class PatientController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

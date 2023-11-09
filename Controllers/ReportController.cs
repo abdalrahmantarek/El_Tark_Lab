@@ -3,9 +3,12 @@ using LAB.Models;
 using LAB.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace LAB.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
         IUnitOfWork unitOfWork;

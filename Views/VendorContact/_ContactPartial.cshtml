@@ -12,84 +12,109 @@ Summary
 
 
 
-<div class="col-xl-12" style="padding:5px 0px">
+<div class="" >
 	<!--begin::List contact-->
 	<div class="card card-xl-stretch mb-xl-8">
 		<!--begin::Header-->
-@* 		<div class="card-header border-0">
-			<h2 class="card-title fw-bold text-dark">Contacts</h2>
-
-		</div> *@
-	
-			
+		<div class="row">
+			<div class="col-xl-3">
 				<!--Add Contract-->
-				<a href="#" class="btn btn-primary mb-10 er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_Contact">New Contact</a>
-				
-
-			
-		
+				<a href="#" class="btn btn-primary mt-10 mb-10 er fs-6 " data-bs-toggle="modal" data-bs-target="#kt_modal_new_Contact">Add Contact</a>
+			</div>
+		</div>
 		<!--end::Header-->
 		<!--begin::Body-->
-		
+		<div class="row">
 			@foreach (var item in Model)
 			{
-			<div class="card mb-10">
-				<h2 class="card-header bg-light-dark align-content-center">@item.ContactName</h2>
-				<div class="card-body">
-					<h3 class="card-title mb-10">Email : @item.ContactEmail</h3>
-					<h3 class="card-text mb-10">
-						Phone1: 
-						<span>@item.ContactTel</span>
+			<div class="col-xl-6">
+			<!--begin::Feeds Widget 2-->
+			<div class="card mb-5 mb-xxl-8">
+				<!--begin::Body-->
+				<div class="card-body pb-0">
+					<!--begin::Header-->
+					<div class="d-flex align-items-center mb-5">
+						<!--begin::User-->
+						<div class="d-flex align-items-center flex-grow-1">
+							<!--begin::Avatar-->
+							
+							<!--end::Avatar-->
+							<!--begin::Info-->
+							<div class="d-flex flex-column">
+								<a href="#" class="text-gray-900 text-hover-primary fs-6 fw-bold">@item.ContactName</a>
+								<span class="text-gray-400 fw-bold">@item.ContactEmail</span>
+							</div>
+							<!--end::Info-->
+						</div>
+						<!--end::User-->
+						<!--begin::Menu-->
+						<div class="my-0">
+									<!--begin::Chat-->
+									<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit vendor">
+										<a asp-action="Edit" asp-controller="VendorContact" asp-route-id="@item.ContactId" class="btn btn-sm btn-light-primary">Edit</a>
+									</span>
 
-					</h3>
-					<h3 class="card-text mb-10">
-						Phone2:
-						<span>@item.ContactTel2</span>
-					</h3>
-					<a href="/VendorContact/Edit/@item.ContactId" class="btn btn-primary d-flex justify-content-center">Edit</a>
+									<!--end::Chat-->
+							
+						</div>
+						<!--end::Menu-->
+					</div>
+					<!--end::Header-->
+					<div class="mb-5">
+						<!--begin::Text-->
+								<span class="text-gray-900 text-hover-primary fs-6 fw-bold mb-5 me-10"> Phone1:<span class="text-gray-400 fw-bold"> @item.ContactTel</span> </span>
+								<span class="text-gray-900 text-hover-primary fs-6 fw-bold mb-5"> Phone2:<span class="text-gray-400 fw-bold"> @item.ContactTel2 </span> </span>
+					</div>
+					<!--begin::Separator-->
+					<div class="separator mb-4"></div>
+					<!--end::Separator-->
+
 				</div>
+				<!--end::Body-->
+			</div>
 			</div>
 			
 			}
+		</div>
 		
 
 
 
 
 
-<div class="modal fade" id="kt_modal_new_Contact" tabindex="-1" aria-hidden="true">
-	<!--begin::Modal dialog-->
-	<div class="modal-dialog modal-dialog-centered mw-650px">
-		<!--begin::Modal content-->
-		<div class="modal-content rounded">
-			<!--begin::Modal header-->
-			<div class="modal-header pb-0 border-0 justify-content-end">
-				<!--begin::Close-->
-				<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-					<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-					<span class="svg-icon svg-icon-1">
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-							<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-						</svg>
-					</span>
-					<!--end::Svg Icon-->
+	<div class="modal fade" id="kt_modal_new_Contact" tabindex="-1" aria-hidden="true">
+		<!--begin::Modal dialog-->
+		<div class="modal-dialog modal-dialog-centered mw-650px">
+			<!--begin::Modal content-->
+			<div class="modal-content rounded">
+				<!--begin::Modal header-->
+				<div class="modal-header pb-0 border-0 justify-content-end">
+					<!--begin::Close-->
+					<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+						<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+						<span class="svg-icon svg-icon-1">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+								<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+							</svg>
+						</span>
+						<!--end::Svg Icon-->
+					</div>
+					<!--end::Close-->
 				</div>
-				<!--end::Close-->
-			</div>
-			<!--begin::Modal header-->
-			<!--begin::Modal body-->
-			<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-				<!--begin:Form-->
-				<form id="kt_modal_new_target_form" class="form" method="post" asp-controller="VendorContact" asp-action="Add">
-							<!--begin::Heading-->
-							<div class="mb-13 text-center">
+				<!--begin::Modal header-->
+				<!--begin::Modal body-->
+				<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+					<!--begin:Form-->
+					<form id="kt_modal_new_target_form" class="form" method="post" asp-controller="VendorContact" asp-action="Add">
+								<!--begin::Heading-->
+								<div class="mb-13 text-center">
 								<!--begin::Title-->
 								<h1 class="mb-3">ADD New Contact</h1>
 							</div>
-							<!--end::Heading-->
-							<!--begin::Input group-->
-							<div class="d-flex flex-column mb-8 fv-row">
+								<!--end::Heading-->
+								<!--begin::Input group-->
+								<div class="d-flex flex-column mb-8 fv-row">
 								<!--begin::Label-->
 								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 									<span class="required">ContactId</span>
@@ -97,8 +122,8 @@ Summary
 								<!--end::Label-->
 								<input type="text" class="form-control form-control-solid" placeholder="" name="ContactId" value="" />
 							</div>
-							<!--end::Input group-->
-							<div class="d-flex flex-column mb-8 fv-row">
+								<!--end::Input group-->
+								<div class="d-flex flex-column mb-8 fv-row">
 								<!--begin::Label-->
 								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 								<span class="required">ContactName</span>
@@ -106,9 +131,9 @@ Summary
 								<!--end::Label-->
 								<input type="text" class="form-control form-control-solid" placeholder="" name="ContactName" value="" />
 							</div>
-							<!--end::Input group-->
-							<!--begin::Input group-->
-							<div class="d-flex flex-column mb-8 fv-row">
+								<!--end::Input group-->
+								<!--begin::Input group-->
+								<div class="d-flex flex-column mb-8 fv-row">
 								<!--begin::Label-->
 								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 									<span class="required">ContactEmail</span>
@@ -116,9 +141,9 @@ Summary
 								<!--end::Label-->
 								<input type="email" class="form-control form-control-solid" placeholder="" name="ContactEmail" value="" />
 							</div>
-							<!--end::Input group-->
-							<!--begin::Input group-->
-							<div class="d-flex flex-column mb-8 fv-row">
+								<!--end::Input group-->
+								<!--begin::Input group-->
+								<div class="d-flex flex-column mb-8 fv-row">
 								<!--begin::Label-->
 								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 									<span class="required">ContactTel</span>
@@ -126,9 +151,9 @@ Summary
 								<!--end::Label-->
 								<input type="text" class="form-control form-control-solid" placeholder="" name="ContactTel" value="" />
 							</div>
-							<!--end::Input group-->
-							<!--begin::Input group-->
-							<div class="d-flex flex-column mb-8 fv-row">
+								<!--end::Input group-->
+								<!--begin::Input group-->
+								<div class="d-flex flex-column mb-8 fv-row">
 								<!--begin::Label-->
 								<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 									<span class="required">ContactTel2</span>
@@ -136,19 +161,19 @@ Summary
 								<!--end::Label-->
 							<input type="text" class="form-control form-control-solid" placeholder="" name="ContactTel2" value="" />
 							</div>
-							<!--end::Input group-->
-						@* 	<div>
-							<label>ContactVendor</label>
-							<select class="form-control" name="ContactVendorId" id="ContactVendorId">
-							@foreach (var item in Model.ToList())
-									{
-											<option value="@item.ContactVendorId" selected> @item.ContactVendorId</option>
-										
-									}
-								</select>
-							</div> *@
-							<!--begin::Actions-->
-							<div class="text-center">
+								<!--end::Input group-->
+							@* 	<div>
+								<label>ContactVendor</label>
+								<select class="form-control" name="ContactVendorId" id="ContactVendorId">
+								@foreach (var item in Model.ToList())
+										{
+												<option value="@item.ContactVendorId" selected> @item.ContactVendorId</option>
+											
+										}
+									</select>
+								</div> *@
+								<!--begin::Actions-->
+								<div class="text-center">
 								<button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
 								<button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
 									<span class="indicator-label">Submit</span>
@@ -158,15 +183,17 @@ Summary
 									</span>
 								</button>
 							</div>
-							<!--end::Actions-->
-			</form>
-					
-				<!--end:Form-->
+								<!--end::Actions-->
+				</form>
+						
+						<!--end:Form-->
+					</div>
+					<!--end::Modal body-->
+				</div>
+				<!--end::Modal content-->
 			</div>
-			<!--end::Modal body-->
+			<!--end::Modal dialog-->
 		</div>
-		<!--end::Modal content-->
 	</div>
-	<!--end::Modal dialog-->
 </div>
-<!-- end::Modal - New Target-->
+	<!-- end::Modal - New Target-->

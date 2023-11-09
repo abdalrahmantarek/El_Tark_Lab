@@ -1,0 +1,74 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+<style>
+    .card {
+        text-align: center;
+    }
+
+    #backimage {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        left: auto;
+        z-index: -1;
+    }
+</style>
+<title>El Tarek</title>
+@*<h1>@ViewData["Title"]</h1>*@
+<link href="~/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+<link href="~/css/style.bundle.css" rel="stylesheet" type="text/css" />
+<!--end::Global Stylesheets Bundle-->
+
+<div class="row card w-50 m-auto justify-content-center align-content-center text-center d-flex">
+    <div class="col-12 m-5">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control  m-auto" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label class=""  asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control  m-auto" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label class=""  asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control  m-auto" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label  class="" asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-50 m-auto btn btn-lg btn-primary">Register</button>
+            <hr />
+            OR
+            <br />
+            <h3 class="mt-3"> <a id="login" asp-area="Identity" asp-page="/Account/Login"> Login  </a></h3>
+        </form>
+    </div>
+    <img id="backimage" src="~/images/backimage.jpg" />
+
+</div>
+
+<!--begin::Javascript-->
+<!--begin::Global Javascript Bundle(used by all pages)-->
+<script src="~/plugins/global/plugins.bundle.js"></script>
+<script src="~/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Page Custom Javascript(used by this page)-->
+<script src="~/js/custom/authentication/sign-in/general.js"></script>
+<!--end::Page Custom Javascript-->
+<!--end::Javascript-->
+<partial name="_ValidationScriptsPartial" />
+
+
+    <partial name="_ValidationScriptsPartial" />

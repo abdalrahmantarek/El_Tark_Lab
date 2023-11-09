@@ -1,27 +1,51 @@
-﻿<form method="post" asp-action="Upload" asp-controller="ServicesPricelist" enctype="multipart/form-data">
-    <div class="info2">
+﻿<div class="app-main flex-column flex-row-fluid mt-10" id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <!--begin::Card-->
+                <div class="card">
+                    <div class="card-body py-10">
+                        <form method="post" asp-action="Upload" asp-controller="ServicesPricelist" enctype="multipart/form-data">
+                        
+                            <div class="info2">
 
-        @Html.AntiForgeryToken()
+                                @Html.AntiForgeryToken()
 
 
-        <div class="file-upload">
+                                <div class="file-upload">
 
-            <button type="submit" id="submit" value="Upload" class="file-upload-btn form-control">Upload</button>
-            <div class="image-upload-wrap">
-                @*<input type="file" name="excelFile" />*@
-                <input class="file-upload-input form-control" name="file" type='file' id="file" />
-                <div class="drag-text">
-                    <h3>Drag and drop a file or select add Image</h3>
+                                    <button type="submit" id="submit" value="Upload" class="file-upload-btn form-control w-100 mb-10">Upload</button>
+                                    <div class="image-upload-wrap">
+                                        @*<input type="file" name="excelFile" />*@
+                                        <input class="file-upload-input form-control" name="file" type='file' id="file" />
+                                        <div class="mt-10 border-dashed" style="height:50vh;width:100%">
+                                            <div class="drag-text ">
+                                                <h3 class="text-center text-muted p-10">Drag and drop a file or select add Image</h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-
             </div>
-
         </div>
-
-
-
-
-
     </div>
-</form>
+</div>
+
+
+
+
+
+

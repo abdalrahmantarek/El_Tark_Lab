@@ -4,12 +4,14 @@ using LAB.Models;
 using LAB.Service;
 using LAB.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using System.Text.RegularExpressions;
 
 namespace LAB.Controllers
 {
+    [Authorize]
     public class VendorController : Controller
     {
         readonly IMapper mapper;

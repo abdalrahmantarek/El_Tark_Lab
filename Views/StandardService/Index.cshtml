@@ -6,7 +6,7 @@
 <link href="~/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" />
 
 <!--begin::Content-->
-<div id="kt_app_content" class="app-content flex-column-fluid">
+<div id="kt_app_content" class="app-content flex-column-fluid mt-10">
 	<!--begin::Content container-->
 	<div id="kt_app_content_container" class="app-container container-xxl">
 		<!--begin::Card-->
@@ -25,7 +25,7 @@
 							</svg>
 						</span>
 						<!--end::Svg Icon-->
-						<input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search service" id="listsearch" />
+						<input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search" id="listsearch" />
 					</div>
 					<!--end::Search-->
 				</div>
@@ -36,14 +36,12 @@
 					<div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
 						
 						<!--begin::import-->
-						<a asp-action="importfile" asp-controller="StandardService" class="btn btn-light-primary" >
+						<a asp-action="importfile" asp-controller="StandardService" class="btn btn-light-primary me-3">
 							import
 						</a>
 					
 						<!--end::import-->
-						<!--begin::Add customer-->
-						<button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Add Service</button>
-						<!--end::Add customer-->
+					
 
 
 						<!--begin::Export-->
@@ -59,6 +57,9 @@
 							</span>
 							<!--end::Svg Icon-->Export
 						</button>
+						<!--begin::Add customer-->
+						<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Add Service</button>
+						<!--end::Add customer-->
 
 						<!--end::Export-->
 					</div>
@@ -85,12 +86,12 @@
 						<!--begin::Table row-->
 						<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
 						
-							<th class="min-w-125px">ServiceName</th>
-							<th class="min-w-125px">ServiceUnit</th>
-							<th class="min-w-125px">ServiceCategory</th>
-							<th class="min-w-120px">Package</th>
+							<th class="">ServiceName</th>
+							<th class="">Unit</th>
+							<th class=" ">Category</th>
+							<th class="">Package</th>
 
-							<th class="min-w-70px">ServiceAvailability</th>
+							<th class="">Availability</th>
 						</tr>
 						<!--end::Table row-->
 					</thead>
@@ -115,14 +116,14 @@
 								<!--end::ServiceUnit=-->
 								<!--begin::Company=-->
 
-								<td>
+								<td >
 									@item.ServiceAlphaCodeNavigation.ServiceCatName
 								</td>
 								<td>
 									@item.IsPackage
 								</td>
 
-								<td>
+								<td >
 									@item.ServiceAvailability
 								</td>
 
@@ -305,6 +306,104 @@
 			});
 
 		}
+	</script>
+	<script>
+
+		var KTModalCustomersAdd = function () {
+			var submitButton;
+			var cancelButton;
+			var closeButton;
+
+			var form;
+			var modal;
+			var handleForm = function () {
+				cancelButton.addEventListener('click', function (e) {
+					e.preventDefault();
+
+					Swal.fire({
+						text: "Are you sure you would like to cancel?",
+						icon: "warning",
+						showCancelButton: true,
+						buttonsStyling: false,
+						confirmButtonText: "Yes, cancel it!",
+						cancelButtonText: "No, return",
+						customClass: {
+							confirmButton: "btn btn-primary",
+							cancelButton: "btn btn-active-light"
+						}
+					}).then(function (result) {
+						if (result.value) {
+							form.reset(); // Reset form
+							modal.hide(); // Hide modal
+						} else if (result.dismiss === 'cancel') {
+							Swal.fire({
+								text: "Your form has not been cancelled!.",
+								icon: "error",
+								buttonsStyling: false,
+								confirmButtonText: "Ok, got it!",
+								customClass: {
+									confirmButton: "btn btn-primary",
+								}
+							});
+						}
+					});
+				});
+				closeButton.addEventListener('click', function (e) {
+					e.preventDefault();
+
+					Swal.fire({
+						text: "Are you sure you would like to cancel?",
+						icon: "warning",
+						showCancelButton: true,
+						buttonsStyling: false,
+						confirmButtonText: "Yes, cancel it!",
+						cancelButtonText: "No, return",
+						customClass: {
+							confirmButton: "btn btn-primary",
+							cancelButton: "btn btn-active-light"
+						}
+					}).then(function (result) {
+						if (result.value) {
+							form.reset(); // Reset form
+
+							modal.hide(); // Hide modal
+
+
+						} else if (result.dismiss === 'cancel') {
+							Swal.fire({
+								text: "Your form has not been cancelled!.",
+								icon: "error",
+								buttonsStyling: false,
+								confirmButtonText: "Ok, got it!",
+								customClass: {
+									confirmButton: "btn btn-primary",
+								}
+							});
+						}
+					});
+				})
+
+
+
+			}
+			return {
+				// Public functions
+				init: function () {
+					// Elements
+					modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_customer'));
+
+					form = document.querySelector('#kt_modal_add_customer_form');
+					submitButton = form.querySelector('#kt_modal_add_customer_submit');
+					cancelButton = form.querySelector('#kt_modal_add_customer_cancel');
+					closeButton = form.querySelector('#kt_modal_add_customer_close');
+
+					handleForm();
+				}
+			};
+		}();
+		KTUtil.onDOMContentLoaded(function () {
+			KTModalCustomersAdd.init();
+		});
 	</script>
 }
 

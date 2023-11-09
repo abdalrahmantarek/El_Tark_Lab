@@ -51,11 +51,11 @@
 
 					<!-- begin::Header-->
 					<div class="d-flex justify-content-between flex-column flex-sm-row ">
-						<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
-							<div class="fw-bolder text-gray-800 fs-2qx ">INVOICE</div>
+						<div class="text-sm-end fw-semibold fs-4 text-muted mt-7 align-content-center">
+							<span class="fw-bolder text-gray-800 fs-2qx ">INVOICE </span>
 					
 							<!--end::Logo-->
-							<div >@Model.InvoiceId</div>
+							<div class="text-start"> [ @Model.InvoiceId ] </div>
 						
 						</div>
 
@@ -65,7 +65,7 @@
 							<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
 								
 								<div>@ViewBag.VendorName</div>
-								<div>@Model.Visit.PatientInssurredId</div>
+								<div>[ @Model.Visit.PatientInssurredId ]</div>
 					
 							</div>
 							<!--end::Text-->
@@ -81,26 +81,27 @@
 								<div class="flex-root d-flex flex-column mb-2">
 									<span class="text-muted text-md-start">
 										Date:
-                                        <span class="fs-5">@Model.LastUpdateDate</span>
+                                        <span class="fs-5">@Model.LastUpdateDate </span>
                                     </span>
 								</div>
-								<div>
-									<p>
-										Visit Number:
-										@Model.Visit.VisitId
-									</p>
+								<div class="d-flex justify-content-between ">
+								<div class="">
+										<p class="">
+											Name:
+											@Model.Visit.Patient.PatientName
+
+											<span class="fs-6 d-print-none">(@Model.Visit.Patient.PatientEmail)</span>
+										</p>
 								</div>
-								<div>
-									<p>
-										Name:
-										@Model.Visit.Patient.PatientName
-
-										<span class="fs-6 d-print-none">(@Model.Visit.Patient.PatientEmail)</span>
-									</p>
-
-
+									<div class="">
+										<p>
+											Visit Number:
+											@Model.Visit.VisitId
+										</p>
 								</div>
-                                <div>
+								</div>
+								<div class="d-flex justify-content-between">
+								<div class="">
                                     @{
                                         var years = DateTime.Now.Year - (Model.Visit.Patient.PatientBirthdate.Value.Year);
                                         var month = DateTime.Now.Month - (Model.Visit.Patient.PatientBirthdate.Value.Month);
@@ -110,52 +111,56 @@
 									@if(years <= 0)
 									{
 
-                                        <p> Age: 
-                                            @month
-                                            month /
-                                            @days  days
+											<p>
+												Age:
+												@month
+												M
+												@days D
 
-											@if (Model.Visit.Patient.PatientGender == "M")
-											{
-                                                <span class="fs-6">/ Male </span>
-											}
+												@if (Model.Visit.Patient.PatientGender == "M")
+												{
+													<span class="fs-6 text-muted">[Male] </span>
+												}
 
-											else
-											{
-                                                <span class="fs-6">/ Female </span>
-											}
+												else
+												{
+													<span class="fs-6 text-mute"> [Female]</span>
+												}
 
-									</p>
+											</p>
 									}						
 
 
 									else
 									{
-                                        <p>Age: 
-                                            
-											@years years
+											<p>
 
-											@if (Model.Visit.Patient.PatientGender == "M")
-											{
-                                                <span class="fs-6">/ Male </span>
-											}
+												Age: @years Y
 
-											else
-											{
-                                                <span class="fs-6">/ Female</span>
-											}
-										</p>
+												@if (Model.Visit.Patient.PatientGender == "M")
+												{
+													<span class="fs-6  text-mute">[Male] </span>
+												}
+
+												else
+												{
+													<span class="fs-6  text-mute">[Female]</span>
+												}
+											</p>
 										
 									}
 									
                                     
 
 								</div>
-								<div>
+									<div class="">
 									<p>
 										Doctor Name :
+										@* 	@if (Model.Visit.RefererDoctorNavigation.DoctorName!=null){
 										@Model.Visit.RefererDoctorNavigation.DoctorName
+											} *@
 									</p>
+								</div>
 								</div>
 							</div>
 						
@@ -310,7 +315,7 @@
 							<div class="fw-bolder text-gray-800 fs-2qx ">INVOICE</div>
 							@* 		<h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">INVOICE</h4> *@
 							<!--end::Logo-->
-							<div>@Model.InvoiceId</div>
+							<div class="text-start">[ @Model.InvoiceId ]</div>
 
 						</div>
 						<!--end::Logo-->
@@ -320,6 +325,7 @@
 							<!--begin::Text-->
 							<div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
 								<div>@ViewBag.VendorName</div>
+								<div class="">[ @Model.Visit.PatientInssurredId ]</div>
 								<div></div>
 							</div>
 							<!--end::Text-->
@@ -327,35 +333,40 @@
 					</div>
 					<!--end::Header-->
 					<!--begin::Body-->
-					<div class="pb-12">
+					<div class="pb-12 mt-2">
 						<!--begin::Wrapper-->
 						<div class="d-flex flex-column gap-7 gap-md-10">
 							<!--begin::Message-->
-							<div class="flex-root d-flex flex-column">
+							<div class="fw-bold fs-2">
+							<div class="flex-root d-flex flex-column mb-2">
 								<span class="text-muted">Date:
                                     <span class="fs-5">@Model.LastUpdateDate</span>
                                 </span>
 							</div>
+								<div class="d-flex justify-content-between">
 							<div class="fw-bold fs-2"> Name: 
 
 								@Model.Visit.Patient.PatientName
-								<div>
+								@* <div>
 								    Inssurred Id :
                                     <span class="fs-6">@Model.Visit.PatientInssurredId</span>
-                                </div>
-
-								<div>
+                                </div> *@
+							</div>
+							<div>
 									<p>
 										Visit Number:
 										@Model.Visit.VisitId
 									</p>
-								</div>
-								<div>
+							</div>
+							@* 	<div>
 									<p>
 										Doctor Name :
 										@Model.Visit.RefererDoctorNavigation.DoctorName
 									</p>
-								</div>
+								</div> *@
+							</div>
+							</div>
+
 							</div>
 							
 							<!--begin:Order summary-->

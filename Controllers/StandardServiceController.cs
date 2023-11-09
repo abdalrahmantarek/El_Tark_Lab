@@ -5,9 +5,11 @@ using LAB.Service;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LAB.Controllers
 {
+    [Authorize]
     public class StandardServiceController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

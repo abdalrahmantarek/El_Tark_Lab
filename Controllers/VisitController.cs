@@ -17,12 +17,14 @@ using LAB.IService;
 using LAB.Models;
 using LAB.Service;
 using LAB.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LAB.Controllers
 {
+    [Authorize]
     public class VisitController : Controller
     {
 
@@ -57,33 +59,33 @@ namespace LAB.Controllers
         }
 
 
-		[HttpPost]
-		public IActionResult Filter(DateOnly? Date)
-		{
-			//, DateOnly EndDate
+		//[HttpPost]
+		//public IActionResult Filter(DateOnly? Date)
+		//{
+		//	//, DateOnly EndDate
 
-			//var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) >= StartDate && DateOnly.FromDateTime(i.CreationDate) <= EndDate).ToList();
+		//	//var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) >= StartDate && DateOnly.FromDateTime(i.CreationDate) <= EndDate).ToList();
 
 
 			
-			var model = unitOfWork.VisitServices.GetAll().Where(d => DateOnly.FromDateTime( d.VisitStartDate.Value) == Date) .ToList();
+		//	var model = unitOfWork.VisitServices.GetAll().Where(d => DateOnly.FromDateTime( d.VisitStartDate.Value) == Date) .ToList();
 
 
-			foreach (var item in model)
-			{
-				if (item.VisitStatus.ToLower() == "p")
-				{ item.VisitStatus = "pending"; }
-				else if (item.VisitStatus.ToLower() == "a")
-				{ item.VisitStatus = "Active"; }
-				else if (item.VisitStatus.ToLower() == "c")
-				{ item.VisitStatus = "Cancel"; }
+		//	foreach (var item in model)
+		//	{
+		//		if (item.VisitStatus.ToLower() == "p")
+		//		{ item.VisitStatus = "pending"; }
+		//		else if (item.VisitStatus.ToLower() == "a")
+		//		{ item.VisitStatus = "Active"; }
+		//		else if (item.VisitStatus.ToLower() == "c")
+		//		{ item.VisitStatus = "Cancel"; }
 
 
-			}
+		//	}
 
 
-			return View("Index", model);
-		}
+		//	return View("Index", model);
+		//}
 
 		[HttpGet]
         public IActionResult Add()
@@ -604,6 +606,27 @@ namespace LAB.Controllers
             unitOfWork.Save();
             return RedirectToAction("Details", new { id = visitId });
         }
-    }
+		//filter by date
+		[HttpPost]
+		public IActionResult FilterByDate(DateOnly Date)
+		{
 
+			var model = unitOfWork.VisitServices.GetAll().Where(i => DateOnly.FromDateTime(i.VisitStartDate.Value) == Date).ToList();
+
+			foreach (var item in model)
+			{
+				if (item.VisitStatus.ToLower() == "p")
+				{ item.VisitStatus = "pending"; }
+				else if (item.VisitStatus.ToLower() == "a")
+				{ item.VisitStatus = "Active"; }
+				else if (item.VisitStatus.ToLower() == "c")
+				{ item.VisitStatus = "Cancel"; }
+
+			}
+			return View("Filter", model);
+		}
+
+	}
 }
+
+

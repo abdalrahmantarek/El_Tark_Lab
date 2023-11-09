@@ -15,6 +15,10 @@ public partial class HMISContext : DbContext
     {
     }
 
+    public virtual DbSet<BatchDetail> BatchDetails { get; set; }
+
+    public virtual DbSet<Batsh> Batshes { get; set; }
+
     public virtual DbSet<ContactsOccupation> ContactsOccupations { get; set; }
 
     public virtual DbSet<Currency> Currencies { get; set; }
@@ -83,6 +87,60 @@ public partial class HMISContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<BatchDetail>(entity =>
+        {
+            entity.ToTable("Batch_Details");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BatchId).HasColumnName("batch_id");
+            entity.Property(e => e.VisitId).HasColumnName("visit_id");
+
+            entity.HasOne(d => d.Batch).WithMany(p => p.BatchDetails)
+                .HasForeignKey(d => d.BatchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Batch_Details_Batshes");
+
+            entity.HasOne(d => d.Visit).WithMany(p => p.BatchDetails)
+                .HasForeignKey(d => d.VisitId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Batch_Details_Visits");
+        });
+
+        modelBuilder.Entity<Batsh>(entity =>
+        {
+            entity.HasKey(e => e.BatchId);
+
+            entity.Property(e => e.BatchId).HasColumnName("batch_id");
+            entity.Property(e => e.BatchSize).HasColumnName("batch_size");
+            entity.Property(e => e.BatchStatus)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("batch_status");
+            entity.Property(e => e.BatchType)
+                .HasMaxLength(50)
+                .HasColumnName("batch_type");
+            entity.Property(e => e.BatchValue).HasColumnName("batch_value");
+            entity.Property(e => e.CreationDate)
+                .HasColumnType("datetime")
+                .HasColumnName("creation_date");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.VendorId).HasColumnName("vendor_id");
+
+            entity.HasOne(d => d.Vendor).WithMany(p => p.Batshes)
+                .HasForeignKey(d => d.VendorId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Batshes_Vendors");
+        });
+
         modelBuilder.Entity<ContactsOccupation>(entity =>
         {
             entity.HasKey(e => e.OccupationId);

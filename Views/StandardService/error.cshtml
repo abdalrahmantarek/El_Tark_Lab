@@ -1,47 +1,37 @@
 ﻿@model IEnumerable<LAB.Models.StandardService>
 
 
+<div class="app-main flex-column flex-row-fluid mt-10" id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <!--begin::Card-->
+                <div class="card">
+                    <div class="card-body p-10  ">
+                        <div class="mt-10 border-dashed border-danger" style="height:50vh;">
+                            <div class="drag-text ">
+                                <h3 class="text-center text-danger p-10">The File Not Matching The Data</h3>
+                            </div>
+                        </div>
+                       
 
-<table class="table table-bordered table-hover" style="border-color: red;">
+                        <a asp-action="index" asp-controller="StandardService" class="btn btn-lg btn-light-primary me-3 mt-10" data-kt-stepper-action="previous">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
+                            <span class="svg-icon svg-icon-3 me-1">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor" />
+                                    <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->Back to list
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-        <thead>
-          <tr>
-            <th>ServiceName</th>
-            <th>ServiceAvailability</th>
-             <th>ServiceAlphaCode</th>
-               <th>ServiceUnit</th>
-               <th>IsPackage</th>
-
-
-        </tr>
-        </thead>
-
-        <tbody>
-
-           @foreach (StandardService item in Model)
-    {
-        <tr>
-           
-            <td>@item.ServiceName</td>
-            <td>@item.ServiceAvailability</td>
-            <td>@item.ServiceAlphaCode</td>
-
-
-            <td>@item.ServiceUnit</td>
-
-            <td>@item.IsPackage</td>
-
-
-        </tr>
-        
-    }
-
-
-        </tbody>
-
-    
-        <a asp-action="Index" asp-controller="StandardService" class="btn btn-primary" style="text-decoration:none">Back to list</a>
-
-
-    </table>

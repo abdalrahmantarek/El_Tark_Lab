@@ -1,25 +1,16 @@
 ﻿	@using LAB.ViewModel;
 	@model VisitViewModel
-
+<div id="kt_app_content" class="app-content flex-column-fluid h-700px mt-10">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-xxl">
 	<!--begin::Modal content-->
 	<div class=" card">
 		<!--begin::Modal header-->
-		<div class="modal-header">
+		<div class="modal-header  p-10">
 			<!--begin::Modal title-->
 			<h2>Create Visit</h2>
 			<!--end::Modal title-->
-			<!--begin::Close-->
-			<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-				<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-				<span class="svg-icon svg-icon-1">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-						<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-					</svg>
-				</span>
-				<!--end::Svg Icon-->
-			</div>
-			<!--end::Close-->
+
 		</div>
 		<!--end::Modal header-->
 		<!--begin::Modal body-->
@@ -110,7 +101,7 @@
 							<div class="w-100">
 								<div class="row">
 									<!--begin::Input group : patient Name-->
-									<div class="fv-row mb-10 col-6">
+									<div class="fv-row mb-10 col-12">
 									<!--begin::Label-->	
 									<label class="d-flex align-items-center fs-5 fw-semibold mb-2">
 										<span class="required">Patient Name</span>
@@ -133,30 +124,7 @@
 								</div>
 									<!--end::Input group-->
 									<!--begin::Input group : RefererDoctor-->
-									<div class="fv-row mb-10 col-6">
-									<!--begin::Label-->
-									<label class="d-flex align-items-center fs-5 fw-semibold mb-2">
-										<span class=""> Referer Doctor</span>
-										<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Add Referer Doctor Name"></i>
-									</label>
-									<!--end::Label-->
-									<!--begin::Input-->
-									<!--begin::Select2-->
-									<select  id="addrefdocSelect" class="form-select" data-control="select2" data-placeholder="Select Referer Doctor">
-										<option></option>
-										<option value="add-refdoc">Add Reffered Doctor</option>
-										@foreach (var item in Model.RefDoctor)
-										{
-											
-											<option  value="@item.DrId">@item.DoctorName</option>
-										}
-									</select>
-									<!--end::Select2-->
-									<!--end::Input-->
-									<div id="AddRefDoctor">
-										
-									</div>
-								</div>
+								 
 									<!--end::Input group-->
 								</div>
 								<!--begin::Input group : StartDate-->
@@ -191,29 +159,21 @@
 								<!--begin::Input group : VisitStatus-->
 								<div class="fv-row mb-10">
 									<!--begin::Label-->
-									<label class="d-flex align-items-center fs-5 fw-semibold mb-2">
-										<span class="required">VisitStatus</span>
-										<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-									</label>
+									
 									<!--begin::Input group-->
 								<input type="hidden" asp-for="@Model.Visit.VisitStatus" />
 									
 								</div>
 								<!--end::Input group-->
 								<!--begin::Input group : VisitInsurred-->	
-								<div class="fv-row mb-10">
-									<div class="form-check form-switch">
-										<input class="form-check-input" type="checkbox" asp-for="@Model.Visit.VisitInsurred" id="flexSwitchCheckDefault">
-										<label class="form-check-label" for="flexSwitchCheckDefault">Visit Insured?</label>
-									</div>
-								</div>
+								
 								<!--end::Input group-->
 								<!--begin::Modal body -- add patient-->
-								<div id="addPatientModal" class="modal-body py-10 px-lg-10">
+								 <div id="addPatientModal" class="modal-body py-10 px-lg-10">
 										
 									
 									
-								</div>
+								 </div>
 								<!--end::Modal body-->
 							</div>
 							<!-- Modal for adding a patient -->
@@ -226,6 +186,40 @@
 						<div data-kt-stepper-element="content">
 							<div class="w-100">
 								<!--VisitInsurredCompanyId & InssuredExpireDate -->
+
+									<div class="fv-row mb-10 row col-12">
+										<!--begin::Label-->
+										<div class="col-6"> 
+										<label class="d-flex align-items-center fs-5 fw-semibold mb-2">
+											<span class=""> Referer Doctor</span>
+											<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Select Referer Doctor"></i>
+										</label>
+										<!--end::Label-->
+										<!--begin::Input-->
+										<!--begin::Select2-->
+										<select id="addrefdocSelect" class="form-select" data-control="select2" data-placeholder="Select Referer Doctor">
+											<option></option>
+											<option value="add-refdoc">Add Reffered Doctor</option>
+											@foreach (var item in Model.RefDoctor)
+											{
+
+												<option value="@item.DrId">@item.DoctorName</option>
+											}
+										</select>
+										<!--end::Select2-->
+										<!--end::Input-->
+										</div>
+										<div class="col-6" id="AddRefDoctor">
+
+										</div>
+									</div>
+									<div class="fv-row mb-10">
+										<div class="form-check form-switch">
+											<input class="form-check-input" type="checkbox" asp-for="@Model.Visit.VisitInsurred" id="flexSwitchCheckDefault">
+											<label class="form-check-label" for="flexSwitchCheckDefault">Visit Insured?</label>
+										</div>
+									</div>
+
 								<div class="row">
 									<!--begin::Input group : VisitInsurredCompanyId-->
 									<div class="fv-row mb-10 col-6" id="insuredCompanyInput" style="display: none;">
@@ -337,15 +331,8 @@
 								<!--begin::Main column-->
 								<div class="d-flex flex-column flex-lg-row-fluid gap-7 gap-lg-10">
 									<!--begin::Order details-->
-									<div class="card card-flush py-4">
-										<!--begin::Card header-->
-										<div class="card-header">
-											<div class="card-title">
-												<h2>Select Services</h2>
-											</div>
-										</div>
-										<!--end::Card header-->
-										<!--begin::Card body-->
+									<div class="card card-flush ">
+										
 									<div class="card-body pt-0" id="SPLTable">
 											<div class="d-flex flex-column gap-10">
 												<!--begin::Input group-->
@@ -426,8 +413,7 @@
 																			<span data-kt-ecommerce-edit-order-filter="price">@Model.ServicesPricelists[i].ServicePrice</span>
 																			</div>
 																			<!--end::Price-->
-																			<!--begin::SKU-->
-																			<div class="text-muted fs-7">SKU: 04953004</div>
+																			
 																			<!--end::SKU-->
 																		</div>
 																	</div>
@@ -550,7 +536,8 @@
 		<!--end::Modal body-->
 	</div>
 	<!--end::Modal content-->
-
+</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Add the "Discard" button to your modal -->

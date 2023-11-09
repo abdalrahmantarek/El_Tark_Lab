@@ -5,10 +5,13 @@ using LAB.Models;
 using OfficeOpenXml;
 using System.Text.RegularExpressions;
 using LAB.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace LAB.Controllers
 {
-	public class ServicesPricelistController : Controller
+    [Authorize]
+    public class ServicesPricelistController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		public ServicesPricelistController(IUnitOfWork unitOfWork)
@@ -25,6 +28,9 @@ namespace LAB.Controllers
 		[HttpGet]
 		public IActionResult Add(int id)
 		{
+			if (!( id > 0))
+				return Json("please select a contract");
+
 			ServicesPricelistViewModel model = new();
 
 			model.ContractId = id;
@@ -38,6 +44,8 @@ namespace LAB.Controllers
 		[HttpPost]
 		public IActionResult Add(int id, ServicesPricelistViewModel ServicesPricelist)
 		{
+
+			
 			ServicesPricelist newPriceList = new ServicesPricelist();
 			if (ModelState.IsValid)
 			{
