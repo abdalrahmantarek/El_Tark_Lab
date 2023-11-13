@@ -2,8 +2,15 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<table class="table table-bordered table-hover border-3 container ">
+<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid h-700px mt-10">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="card p-20">
+                    <table class="table table-bordered table-hover border-3 container ">
     <thead>
         <tr>
             <th></th>
@@ -42,9 +49,9 @@
         </tr>
     </tbody>
 </table>
-<hr />
+                    <hr />
 
-<table class="w-100 mt-5 container">
+                     <table class="w-100 mt-5 container">
     <thead>
         <tr>
             <th>Test Name</th>
@@ -61,7 +68,8 @@
 
                 <td>
                 
-                    @item.NormalRange.StandrefNavigation?.ServiceName
+                    @item.NormalRange.StandrefNavigation?.ServiceName 
+                    
                 </td>
 
                 <td>
@@ -81,4 +89,8 @@
         }
     </tbody>
 </table>
-
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

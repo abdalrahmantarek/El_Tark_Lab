@@ -1,10 +1,12 @@
 ﻿using LAB.IService;
 using LAB.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LAB.Controllers
 {
-	public class RefferedDoctorController : Controller
+    [Authorize]
+    public class RefferedDoctorController : Controller
 	{
 		private readonly IUnitOfWork _unitofwork;
 
@@ -81,7 +83,7 @@ namespace LAB.Controllers
 
 		{      doctor.LastUpdateBy = "hr";
 				doctor.LastUpdateFrom = "hr";
-
+			doctor.LastUpdateDate = DateTime.Now;
 			if (ModelState.IsValid)
 			{
 				

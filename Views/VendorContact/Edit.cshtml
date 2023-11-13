@@ -1,83 +1,130 @@
 ﻿@model VendorContact
-<div class=" bg-white p-20" >
-	<div class="container-lg">
-		<form id="kt_modal_Edit_target_form" class="form" method="post" asp-controller="VendorContact" asp-action="Edit">
-			<!--begin::Heading-->
-			<div class="mb-13 text-center">
-				<!--begin::Title-->
-				<h1 class="mb-3 fw-bold " style="font-size:40px">Edit Contact</h1>
-			</div>
-			<!--end::Heading-->
-			<!--begin::Input group-->
-			<div class="d-flex flex-column mb-8 fv-row">
-				<!--begin::Label-->
-				<!--end::Label-->
-				<input type="hidden" class="form-control form-control-solid" placeholder="" name="ContactId" value="@Model.ContactId" />
-			</div>
-			<!--end::Input group-->
-			<div class="d-flex flex-column mb-8 fv-row">
-				<!--begin::Label-->
-				<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-					<span class="required">ContactName</span>
-				</label>
-				<!--end::Label-->
-				<input type="text" class="form-control form-control-solid" placeholder="" name="ContactName" value="@Model.ContactName" />
-			</div>
-			<!--end::Input group-->
-			<!--begin::Input group-->
-			<div class="d-flex flex-column mb-8 fv-row">
-				<!--begin::Label-->
-				<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-					<span class="required">ContactEmail</span>
-				</label>
-				<!--end::Label-->
-				<input type="email" class="form-control form-control-solid" placeholder="" name="ContactEmail" value=" @Model.ContactEmail" />
-			</div>
-			<!--end::Input group-->
-			<!--begin::Input group-->
-			<div class="d-flex flex-column mb-8 fv-row">
-				<!--begin::Label-->
-				<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-					<span class="required">ContactTel</span>
-				</label>
-				<!--end::Label-->
-				<input type="text" class="form-control form-control-solid" placeholder="" name="ContactTel" value="@Model.ContactTel" />
-			</div>
-			<!--end::Input group-->
-			<!--begin::Input group-->
-			<div class="d-flex flex-column mb-8 fv-row">
-				<!--begin::Label-->
-				<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-					<span class="required">ContactTel2</span>
-				</label>
-				<!--end::Label-->
-				<input type="text" class="form-control form-control-solid" placeholder="" name="ContactTel2" value="@Model.ContactTel2" />
-			</div>
-			<!--end::Input group-->
-				<div class="mb-10">
-			<label>ContactVendor</label>
-			<select class="form-control" name="ContactVendorId" id="ContactVendorId">
-			@foreach (var item in ViewBag.VendorList)
-			{
-						<option value="@item.VendorId" selected> @item.VendorName</option>
+<div class="app-main flex-column flex-row-fluid mt-10 " id="kt_app_main">
+	<div class="d-flex flex-column flex-column-fluid">
+		<div id="kt_app_content" class="app-content flex-column-fluid">
+			<div id="kt_app_content_container" class="app-container container-xxl">
+				
+				<!--begin::Card-->
+				<div class="card">
 
-			}
-			</select>
-			</div>
-			<!--begin::Actions-->
-			<div class="text-center">
-				<button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
-				<button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-					<span class="indicator-label">Save Edit</span>
-					<span class="indicator-progress">
-						Please wait...
-						<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-					</span>
-				</button>
-			</div>
-			<!--end::Actions-->
-		</form>
+					<form id="kt_modal_Edit_target_form" class="form" method="post" asp-controller="VendorContact" asp-action="Edit">
+						<!--begin::Heading-->
+						<div class="modal-body py-10 px-lg-17">
+						<div class="mb-13 ">
+							<!--begin::Title-->
+							<h1 class="mb-3  fs-1 fw-bold ">Edit Contact</h1>
+						</div>
+						<!--end::Heading-->
+							<!--begin::Input group-->
+						<div class="row g-9 mb-7">
+								<input type="hidden" name="ContactId" value="@Model.ContactId" />
+							<input type="hidden" name="LastUpdateBy" value="@Model.LastUpdateBy" />
+							<input type="hidden" name="LastUpdateFrom" value="@Model.LastUpdateFrom" />
+							<input type="hidden" name="LastUpdateDate" value="@Model.LastUpdateDate" />
+							<div class="col-md-6 fv-row">
+								<!--begin::Label-->
+								<label class="fs-6 fw-semibold mb-2">
+										<span class="required">ContactName</span>
+									<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
+								</label>
+								<!--end::Label-->
+								<!--begin::Input-->
+									<input type="text" class="form-control form-control-solid" placeholder="" required name="ContactName" value="@Model.ContactName" />
+								<!--end::Input-->
+							</div>
+							<!--begin::Input group-->
+							<div class="col-md-6 fv-row">
+								<!--begin::Label-->
+								<label class="fs-6 fw-semibold mb-2">
+										<span>ContactEmail</span>
+								</label>
+								<!--end::Label-->
+								<!--begin::Input-->
+									<input type="email" class="form-control form-control-solid" placeholder="" name="ContactEmail" value="@Model.ContactEmail">
+								<!--end::Input-->
+								<div class="fv-plugins-message-container invalid-feedback"></div>
+							</div>
+							<!--end::Input group-->
+						</div>
+						<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="row g-9 mb-7">
+								<div class="col-md-6 fv-row">
+									<!--begin::Label-->
+									<label class="fs-6 fw-semibold mb-2">
+										<span class="required">ContactTel</span>
+										<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
+									</label>
+									<!--end::Label-->
+									<!--begin::Input-->
+									<input type="text" class="form-control form-control-solid" placeholder="" required name="ContactName" value="@Model.ContactTel" />
+									<!--end::Input-->
+								</div>
+								<!--begin::Input group-->
+								<div class="col-md-6 fv-row">
+									<!--begin::Label-->
+									<label class="fs-6 fw-semibold mb-2">
+										<span>ContactTel2</span>
+									</label>
+									<!--end::Label-->
+									<!--begin::Input-->
+									<input type="email" class="form-control form-control-solid" placeholder="" name="ContactEmail" value="@Model.ContactTel2">
+									<!--end::Input-->
+									<div class="fv-plugins-message-container invalid-feedback"></div>
+								</div>
+								<!--end::Input group-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="row g-9 mb-7">
+								<div class="col-6 fv-row">
+									<label>ContactVendor</label>
+									<select class="form-control" name="ContactVendorId" id="ContactVendorId">
+										@foreach (var item in ViewBag.VendorList)
+										{
+											<option value="@item.VendorId" selected> @item.VendorName</option>
 
+										}
+									</select>
+								</div>
+						
+							</div>
+							<!--end::Input group-->
+
+						<div class="mb-10">
+
+						</div>
+						<!--begin::Actions-->
+						<div class="text-center">
+							<a asp-action="index" asp-controller="vendor" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous">
+								<!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
+								<span class="svg-icon svg-icon-3 me-1">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor" />
+										<path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor" />
+									</svg>
+								</span>
+								<!--end::Svg Icon-->Back
+							</a>
+							
+							<button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+								<span class="indicator-label">Save Edit</span>
+								<span class="indicator-progress">
+									Please wait...
+									<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+								</span>
+							</button>
+						</div>
+						<!--end::Actions-->
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+
+
 				

@@ -55,6 +55,8 @@ public partial class Visit
 
     public int? OrderId { get; set; }
 
+    public virtual ICollection<BatchDetail> BatchDetails { get; set; } = new List<BatchDetail>();
+
     public virtual Patient? Patient { get; set; }
 
     public virtual ICollection<PatientInvoiceDetail> PatientInvoiceDetails { get; set; } = new List<PatientInvoiceDetail>();

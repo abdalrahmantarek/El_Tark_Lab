@@ -29,6 +29,8 @@ public partial class Vendor
 
     public DateTime? LastUpdateDate { get; set; }
 
+    public virtual ICollection<Batsh> Batshes { get; set; } = new List<Batsh>();
+
     public virtual VendorCategory VendorCatNavigation { get; set; } = null!;
 
     public virtual ICollection<VendorContact> VendorContacts { get; set; } = new List<VendorContact>();

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LAB.Models.VendorContractType>;
+﻿@model IEnumerable<LAB.Models.VendorContractType>
 @{
     ViewData["Title"] = "Add_Contract";
     Layout = null;
@@ -17,12 +17,12 @@
 		<!--begin::Close-->
 		<div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary">
 			<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-			<span class="svg-icon svg-icon-1">
+			<a class="svg-icon svg-icon-1" href="/vendor/index">
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
 					<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
 				</svg>
-			</span>
+			</a>
 			<!--end::Svg Icon-->
 		</div>
 		<!--end::Close-->
@@ -38,7 +38,7 @@
 				<label class="required fs-6 fw-semibold mb-2">Contract Name</label>
 				<!--end::Label-->
 				<!--begin::Input-->
-				<input type="text" class="form-control form-control-solid" placeholder="" name="ContractName" value="">
+				<input type="text" required class="form-control form-control-solid" placeholder="" name="ContractName" value="">
 				<!--end::Input-->
 				<div class="fv-plugins-message-container invalid-feedback"></div>
 			</div>
@@ -50,7 +50,7 @@
 					<label class="required fs-6 fw-semibold mb-2">StartDate</label>
 					<!--end::Label-->
 					<!--begin::Input-->
-					<input type="date" class="form-control form-control-solid" placeholder="" name="StartDate" value="">
+					<input type="date" required class="form-control form-control-solid" placeholder="" name="StartDate" value="">
 					<!--end::Input-->
 					<div class="fv-plugins-message-container invalid-feedback"></div>
 				</div>
@@ -61,7 +61,7 @@
 					<label class="fs-6 fw-semibold mb-2">End Date</label>
 					<!--end::Label-->
 					<!--begin::Input-->
-					<input type="date" class="form-control form-control-solid" placeholder="" name="EndDate" value="">
+					<input type="date"  class="form-control form-control-solid" placeholder="" name="EndDate" value="">
 					<!--end::Input-->
 				</div>
 			</div>
@@ -97,11 +97,11 @@
 					<!--begin::Input group-->
 					<div class="d-flex flex-column mb-7 fv-row col-6">
 						<!--begin::Label-->
-						<label class="fs-6 fw-semibold mb-2">ContractType</label>
+						<label class="fs-6 fw-semibold mb-2 required ">ContractType</label>
 						<!--end::Label-->
 						<!--begin::Input-->
-						<select data-control="select2" name="ContractType" data-placeholder="Select ContractType" id="SelectedColumns" class="form-control">
-							<option></option>
+						<select data-control="select2" required name="ContractType" data-placeholder="Select ContractType"  class="form-control">
+							<option value=""></option>
 							@foreach (var item in Model)
 							{
 
@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container col-6">
 						<!--begin::Label-->
-						<label class="required fs-6 fw-semibold mb-2">ContractValue</label>
+						<label class=" fs-6 fw-semibold mb-2">ContractValue</label>
 						<!--end::Label-->
 						<!--begin::Input-->
 						<input class="form-control form-control-solid" placeholder="" name="ContractValue" value="">
@@ -129,7 +129,7 @@
 						<!--begin::Col-->
 						<div class=" fv-row fv-plugins-icon-container col-6">
 							<!--begin::Label-->
-							<label class="required fs-6 fw-semibold mb-2">IncreasePer</label>
+							<label class=" fs-6 fw-semibold mb-2">IncreasePer</label>
 							<!--end::Label-->
 							<!--begin::Input-->
 							<input type="text" class="form-control form-control-solid" placeholder="" name="IncreasePer" value="">
@@ -151,7 +151,7 @@
 	<!--begin::Modal footer-->
 	<div class="modal-footer flex-center">
 		<!--begin::Button-->
-		<button type="reset" id="kt_modal_add_customer_cancel" class="btn btn-light me-3">Discard</button>
+		<button type="reset" id="kt_modal_add_customer_cancel" class="btn btn-light me-3">Reset</button>
 		<!--end::Button-->
 		<!--begin::Button-->
 		<button type="submit" class="btn btn-primary">
@@ -165,8 +165,109 @@
 	</div>
 	<!--end::Modal footer-->
 </form>
-<script>
 
+
+
+<script>
+	// Wait for the DOM to be ready
+	document.addEventListener('DOMContentLoaded', function () {
+		const form = document.getElementById('kt_modal_add_customer_form');
+
+		// Add a submit event listener to the form
+		form.addEventListener('submit', function (event) {
+			event.preventDefault();
+
+			// Perform your custom form validation here
+			const contractName = form.elements['ContractName'].value;
+			const startDate = form.elements['StartDate'].value;
+			const excutedBy = form.elements['ExcutedBy'].value;
+			const contractType = form.elements['ContractType'].value;
+			const contractValue = form.elements['ContractValue'].value;
+			const increasePer = form.elements['IncreasePer'].value;
+
+			// Check if the form fields are valid
+			if (!contractName || !startDate || !excutedBy || !contractType || !contractValue || !increasePer) {
+				// Display a SweetAlert2 alert for validation error
+				Swal.fire({
+					icon: 'error',
+					title: 'Validation Error',
+					text: 'Please fill in all required fields.',
+				});
+			} else {
+				// If the form is valid, you can submit the form or take other actions
+				form.submit();
+			}
+		});
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+@*<script>
+  // Wait for the DOM to be ready
+  $(document).ready(function () {
+    // Initialize the Bootstrap 5 form validation
+    $('#kt_modal_add_customer_form').validate({
+      rules: {
+        ContractName: {
+          required: true
+        },
+        StartDate: {
+          required: true
+        },
+        ExcutedBy: {
+          required: true
+        },
+        ContractType: {
+          required: true
+        },
+        ContractValue: {
+          required: true,
+          number: true
+        },
+        IncreasePer: {
+          required: true,
+          number: true
+        }
+      },
+      messages: {
+        ContractName: "Please enter a contract name",
+        StartDate: "Please select a start date",
+        ExcutedBy: "Please enter the executor's name",
+        ContractType: "Please select a contract type",
+        ContractValue: {
+          required: "Please enter the contract value",
+          number: "Please enter a valid number"
+        },
+        IncreasePer: {
+          required: "Please enter the increase percentage",
+          number: "Please enter a valid number"
+        }
+      },
+      errorElement: "span",
+      errorPlacement: function (error, element) {
+        error.addClass("invalid-feedback");
+        element.closest(".fv-plugins-icon-container").append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass("is-invalid").removeClass("is-valid");
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass("is-invalid").addClass("is-valid");
+      }
+    });
+  });
+</script>*@
+
+<script>
 	$("#SelectedColumns").select2();
 </script>
+
 

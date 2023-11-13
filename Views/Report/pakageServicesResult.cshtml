@@ -3,7 +3,15 @@
 @{
     bool iswritten = (bool)ViewBag.iswritten;
 }
-<form asp-action="Generate" method="post" class="form w-75 m-auto">
+<div class="app-main flex-column flex-row-fluid h-1000px mt-10" id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="card">
+                        <form asp-action="Generate" method="post" class="form w-75 m-auto">
 <table class="table table-bordered table-hover border-3 container  ">
     <thead>
         <tr class="d-print-none">
@@ -72,12 +80,12 @@
                 <td>
                         @if (iswritten)
                         {
-                            <input asp-for="RoportResults[i].Result" disabled class="form-control"  />
+                            <input asp-for="RoportResults[i].Result" disabled class="form-control " />
 
                         }
                         else
                         {
-                            <input asp-for="RoportResults[i].Result" required class="form-control" />
+                            <input asp-for="RoportResults[i].Result" required class="form-control " />
                         }
                 </td>
 
@@ -105,3 +113,8 @@
  </div>
 
 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

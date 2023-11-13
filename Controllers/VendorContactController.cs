@@ -3,6 +3,8 @@ using LAB.Models;
 using LAB.Service;
 using LAB.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
 
 /*
  Summary
@@ -17,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LAB.Controllers
 {
+    [Authorize]
     public class VendorContactController : Controller
     {
         private readonly IUnitOfWork _unitofwork;

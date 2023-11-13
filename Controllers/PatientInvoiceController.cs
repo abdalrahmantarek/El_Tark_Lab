@@ -1,12 +1,14 @@
 ﻿using LAB.IService;
 using LAB.Models;
 using LAB.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LAB.Controllers
 {
-	public class PatientInvoiceController : Controller
+    [Authorize]
+    public class PatientInvoiceController : Controller
 	{
 		private readonly IUnitOfWork _unitofwork;
 
@@ -214,30 +216,30 @@ namespace LAB.Controllers
 		}
 
 
-		[HttpPost]
-		public IActionResult Filter(DateOnly Date)
-		{
-			//, DateOnly EndDate
+		//[HttpPost]
+		//public IActionResult Filter(DateOnly Date)
+		//{
+		//	//, DateOnly EndDate
 
-			//var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) >= StartDate && DateOnly.FromDateTime(i.CreationDate) <= EndDate).ToList();
+		//	//var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) >= StartDate && DateOnly.FromDateTime(i.CreationDate) <= EndDate).ToList();
 			
-			var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) >= Date).ToList();
+		//	var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) >= Date).ToList();
 
 
-			foreach (var item in model)
-			{
-				if (item.InvoiceStatus.ToLower() == "p")
-				{ item.InvoiceStatus = "pending"; }
-				else if (item.InvoiceStatus.ToLower() == "a")
-				{ item.InvoiceStatus = "Active"; }
-				else if (item.InvoiceStatus.ToLower() == "c")
-				{ item.InvoiceStatus = "Cancel"; }
+		//	foreach (var item in model)
+		//	{
+		//		if (item.InvoiceStatus.ToLower() == "p")
+		//		{ item.InvoiceStatus = "pending"; }
+		//		else if (item.InvoiceStatus.ToLower() == "a")
+		//		{ item.InvoiceStatus = "Active"; }
+		//		else if (item.InvoiceStatus.ToLower() == "c")
+		//		{ item.InvoiceStatus = "Cancel"; }
 
-			}
+		//	}
 
 
-			return View(model);
-		}
+		//	return View(model);
+		//}
 
 
 		[HttpGet]
@@ -273,7 +275,16 @@ namespace LAB.Controllers
 
 			var model = _unitofwork.PatientInvoiceServices.GetAll().Where(i => DateOnly.FromDateTime(i.CreationDate) == Date).ToList();
 
+			foreach (var item in model)
+			{
+				if (item.InvoiceStatus.ToLower() == "p")
+				{ item.InvoiceStatus = "pending"; }
+				else if (item.InvoiceStatus.ToLower() == "a")
+				{ item.InvoiceStatus = "Active"; }
+				else if (item.InvoiceStatus.ToLower() == "c")
+				{ item.InvoiceStatus = "Cancel"; }
 
+			}
 			return View("Filter", model);
 		}
 

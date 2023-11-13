@@ -1,12 +1,14 @@
 ﻿using LAB.IService;
 using LAB.Models;
 using LAB.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LAB.Controllers
 {
-	public class ContractController : Controller
+    [Authorize]
+    public class ContractController : Controller
 	{
 		IUnitOfWork unitOfWork;
 		public ContractController(IUnitOfWork unitOfWork)
